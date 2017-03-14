@@ -1,5 +1,6 @@
 ---
 title: DynamoDB + ElastiCache + Linq2DynamoDB + OData. Theory.
+permalink: /post1
 ---
 ![teaser](../images/linq2dynamodb/teaser1.png)
 
