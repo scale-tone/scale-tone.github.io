@@ -1,6 +1,6 @@
 ---
 title: DynamoDB + ElastiCache + Linq2DynamoDB + OData. Theory.
-permalink: /2016/03/16/dynamodb-elasticache-linq2dynamodb-odata-theory
+permalink: /2016/03/13/dynamodb-elasticache-linq2dynamodb-odata-theory
 ---
 ![teaser](../images/linq2dynamodb/teaser1.png)
 
