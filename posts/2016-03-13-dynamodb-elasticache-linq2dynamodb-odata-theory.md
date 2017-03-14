@@ -1,5 +1,4 @@
 ---
-layout: post
 title: DynamoDB + ElastiCache + Linq2DynamoDB + OData. Theory.
 ---
 ![teaser](../images/linq2dynamodb/teaser1.png)
