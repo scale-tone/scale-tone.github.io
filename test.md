@@ -4,9 +4,7 @@
 
 {% for post in site.posts %}
 
-   {{ post.title }}
-   
-   [Click Here2]({{ post.url }})
+   [{{ post.title }}]({{ post.url }})
 
 {% endfor %}
 
