@@ -1,5 +1,7 @@
 ## Test
 
+[Click Here](https://github.com)
+
 {% for post in site.posts %}
-	{{ post.title }}  
-	[Click Here](https://github.com) {% endfor %}
+   {{ post.title }}  
+{% endfor %}
