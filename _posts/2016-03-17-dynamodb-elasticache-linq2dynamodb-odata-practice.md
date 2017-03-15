@@ -17,6 +17,7 @@ NOTE: you can find the full source code of this sample on [GitHub](https://githu
 ![new-asp-net-project-empty]({{ site.url }}/images/linq2dynamodb/new-asp-net-project-empty.png)
 
 2. Add the following NuGet packages to the project with [Package Manager Console](https://docs.nuget.org/consume/package-manager-console):
+
 ```
 Install-Package Linq2DynamoDb.DataContext.Caching.Redis
 Install-Package Linq2DynamoDb.AspNet.DataSource 
@@ -26,6 +27,7 @@ Install-Package System.IdentityModel.Tokens.Jwt
 The first two packages bring [AWSSDK](https://aws.amazon.com/ru/sdk-for-net/), [Linq2DynamoDB](https://github.com/scale-tone/linq2dynamodb) and [StackExchange.Redis](https://github.com/StackExchange/StackExchange.Redis) to your project, while the last one will be necessary for parsing JWT tokens.
 
 3. Define your entity. In this example it will be just a simple **Note** class with three properties:
+
 ```
 public class Note
 {
@@ -40,6 +42,7 @@ public class Note
 NOTE: as you can see, the entity declaration for Linq2DynamoDB is completely unobtrusive, it's just a [POCO](https://msdn.microsoft.com/library/dd456853(v=vs.100).aspx). No base classes and no attributes are required. Though there're other ways to define entities, those ways are more complicated, but might improve performance. Please, see more on this in [Linq2DynamoDB documentation](http://linq2dynamodb.codeplex.com/wikipage?title=Defining%20Entities&referringTitle=Documentation).
 
 4. Create a class **NotesDataContext** and derive it from [UpdatableDataContext](https://github.com/scale-tone/linq2dynamodb/blob/master/Sources/Linq2DynamoDb.AspNet.DataSource/UpdatableDataContext.cs). Also add two static fields - for **AmazonDynamoDBClient** and **StackExchange.Redis.ConnectionMultiplexer**: 
+
 ```
 public class NotesDataContext : UpdatableDataContext
 {
@@ -55,9 +58,9 @@ public class NotesDataContext : UpdatableDataContext
 NOTE: in this example we store **DynamoDbClient** and **ConnectionMultiplexer** instances in static fields just for simplicity and to emphasize, that both these objects are long-lived and should be created just once. In production code you would probably inject them into **NotesDataContext**'s constructor by means of your DI-container.
 
 5. Add a static constructor, where the connections to DynamoDB and Redis are initialized:
+
 ```
 static NotesDataContext()
-
 {
    DynamoDbClient = new AmazonDynamoDBClient();
    RedisConn = ConnectionMultiplexer.Connect(ConfigurationManager.AppSettings["RedisConnectionString"]);
@@ -72,6 +75,7 @@ static NotesDataContext()
 The last code line here creates the Note table, if it doesn't exist yet. Pay attention to **"UserId"** string there - it defines a name for the **HashKey** field. And this field is intentionally not defined in our entity class - it will be filled automatically by Linq2DynamoDb.DataContext. See the next step for explanation.
 
 6. Now add a property, that will represent the collection of Note entities:
+
 ```
 public DataTable<Note> Notes
 {
@@ -86,6 +90,7 @@ public DataTable<Note> Notes
 Here the first parameter of **GetTable<TEntity>()** method is what makes our data model "user-specific" (this term I was trying to illustrate in my [previous post](https://scale-tone.github.io/2016/03/13/dynamodb-elasticache-linq2dynamodb-odata-theory)). The resulting entity collection will contain the specified user's entities only. And here is the right place to implement the actual user authentication and extraction of some userId. This step we'll make a little bit later.
 
 7. Add AWS credentials and Redis connection string to your **web.config** file:
+
 ```
 appSettings>
    add key="AWSAccessKey" value="your access key>" />
@@ -102,11 +107,13 @@ NOTE2: An MSI-file for installing Redis on your local Windows machine can be dow
 At this point we have a ready to use data context, and next we'll expose it to the web as an OData feed.
 
 8. Add a text file named **NotesDataService.svc** and paste the following line to it:
+
 ```
 <%@ ServiceHost Language="C#" Factory="System.Data.Services.DataServiceHostFactory, Microsoft.Data.Services, Version=5.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Service="MobileNotes.Web.NotesDataService" %>
 ```
 
 9. Add a CS-file named **NotesDataService.svc.cs** and paste the following code to it:
+
 ```
 using System.Data.Services;
 using System.Data.Services.Common;
@@ -136,6 +143,7 @@ Add some records to the table via [AWS Console](https://aws.amazon.com/ru/consol
 Yet the last thing to do on the server side is to implement user authentication and fill the **UserId** field with something more user-specific. The naive way could be to pass the userId via some HTTP header with each request, but this would be insecure, of course: the service must be able to prove, that the passed userId really belongs to the requesting user. So, for this example I decided to write a piece of code for validating and parsing [Google's ID tokens](https://developers.google.com/identity/protocols/OpenIDConnect) (as it was quite easy to implement). Let's just use that code.
 
 10. Add a class named **GoogleJwtParser** to your project and replace it's code with the following:
+
 ```
 class GoogleJwtParser
 {
@@ -182,6 +190,7 @@ class GoogleJwtParser
 This class uses **JwtSecurityTokenHandler** tool from [System.IdentityModel.Tokens.Jwt](https://www.nuget.org/packages/System.IdentityModel.Tokens.Jwt/4.0.2.206221351) package for dealing with tokens. Because Google's **ID token** is signed with a certificate, the public part of that certificate must be downloaded from Google site, and that's what happens at each service startup.
 
 11. Now add the following method to your **NotesDataContext** class:
+
 ```
 private static string GetUserIdFromAuthorizationHeader()
 {
@@ -199,6 +208,7 @@ private static string GetUserIdFromAuthorizationHeader()
 ```
 
 12. And replace the **Notes** entity set definition with the following:
+
 ```
 public DataTable<Note> Notes
 {
