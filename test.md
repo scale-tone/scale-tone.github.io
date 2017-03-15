@@ -1,5 +1,6 @@
 ## Test
 
 {% for post in site.posts %}
-	{{ post.title }}  |[Click Here]({{ post.url }})
+	{{ post.title }}  
+	[Click Here]({{ post.url }})
 {% endfor %}
