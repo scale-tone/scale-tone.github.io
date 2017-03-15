@@ -82,12 +82,12 @@ public DataTable<Note> Notes
    get
    {
       string userId = "demo_user_id";
-      return this.GetTable[Note>(userId, () => new RedisTableCache(RedisConn));
+      return this.GetTable<Note>(userId, () => new RedisTableCache(RedisConn));
    }
 }
 ```
 
-Here the first parameter of **GetTable<TEntity>()** method is what makes our data model "user-specific" (this term I was trying to illustrate in my [previous post](https://scale-tone.github.io/2016/03/13/dynamodb-elasticache-linq2dynamodb-odata-theory)). The resulting entity collection will contain the specified user's entities only. And here is the right place to implement the actual user authentication and extraction of some userId. This step we'll make a little bit later.
+Here the first parameter of **GetTable\<TEntity>()** method is what makes our data model "user-specific" (this term I was trying to illustrate in my [previous post](https://scale-tone.github.io/2016/03/13/dynamodb-elasticache-linq2dynamodb-odata-theory)). The resulting entity collection will contain the specified user's entities only. And here is the right place to implement the actual user authentication and extraction of some userId. This step we'll make a little bit later.
 
 7. Add AWS credentials and Redis connection string to your **web.config** file:
 
