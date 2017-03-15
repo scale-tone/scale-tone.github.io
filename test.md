@@ -1,5 +1,5 @@
 ## Test
 
 {% for post in site.posts %}
-	[test](http://github.com)
+	{{ post.title }}  |[Click Here]({{ post.url }})
 {% endfor %}
