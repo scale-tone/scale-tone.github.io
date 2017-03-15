@@ -6,7 +6,7 @@
 
    {{ post.title }}
    
-   [Click Here2](https://github.com)
+   [Click Here2]({{ post.url }})
 
 {% endfor %}
 
