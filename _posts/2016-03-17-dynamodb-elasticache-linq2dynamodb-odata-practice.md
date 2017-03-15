@@ -92,12 +92,12 @@ Here the first parameter of **GetTable<TEntity>()** method is what makes our dat
 7. Add AWS credentials and Redis connection string to your **web.config** file:
 
 ```
-appSettings>
-   add key="AWSAccessKey" value="your access key>" />
-   add key="AWSSecretKey" value="your secret key>" />
-   add key="AWSRegion" value="ap-southeast-1" />
-   add key="RedisConnectionString" value="your Redis server address or multiple addresses of cluster nodes>" />
-/appSettings>
+<appSettings>
+   <add key="AWSAccessKey" value="your access key>" />
+   <add key="AWSSecretKey" value="your secret key>" />
+   <add key="AWSRegion" value="ap-southeast-1" />
+   <add key="RedisConnectionString" value="your Redis server address or multiple addresses of cluster nodes>" />
+</appSettings>
 ```
 
 NOTE1: Please, don't store your AWS credentials in clear text in a config file in production. There're many better ways to implement that. E.g. you can use [AWS SDK profiles](http://docs.aws.amazon.com/sdk-for-net/v2/developer-guide/net-dg-config-creds.html).
@@ -120,7 +120,7 @@ using System.Data.Services.Common;
 
 namespace MobileNotes.Web
 {
-   public class NotesDataService : DataService[NotesDataContext>
+   public class NotesDataService : DataService<NotesDataContext>
    {
       public static void InitializeService(DataServiceConfiguration config)
       {
@@ -221,7 +221,7 @@ public DataTable<Note> Notes
 }
 ```
 
-Since now the service becomes inaccessible from browser any more, as it expects the Authorization HTTP header to be passed. You can test it with e.g. [Advanced REST Client tool](https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo).
+Since now the service becomes inaccessible from browser any more, as it expects the Authorization HTTP header to be passed. You can test it with e.g. [Advanced REST Client](https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo) tool.
 
 ## Wrapping Up
 
