@@ -3,7 +3,6 @@ title: DynamoDB + ElastiCache + Linq2DynamoDB + OData. Theory.
 permalink: /2016/03/13/dynamodb-elasticache-linq2dynamodb-odata-theory
 ---
 ![teaser]({{ site.url }}/images/linq2dynamodb/teaser1.png)
-
 # DynamoDB + ElastiCache + Linq2DynamoDB + OData. Theory.
 
 In my first post here I'm going to talk about software development for [AWS](http://aws.amazon.com/) with C#. Doesn't that sound weird? Seems that no one programs in C# for AWS :) But in fact, all the discussion below is intended to make your C# code as few as possible, when creating cloud services based on AWS [DynamoDB](http://aws.amazon.com/dynamodb/). And to get some good results, as I will try to show you.
@@ -42,4 +41,4 @@ Other ways of obtaining the **hashKeyValue** are also possible. E.g. if your ser
 
 ## Wrapping up.
 
-So, this purely theoretical post about creating cloud services with DynamoDB, ElastiCache, C# and OData is finally over. The [next](http://www.linkedin.com/pulse/dynamodb-elasticache-linq2dynamodb-odata-practice-lepeshenkov) [two](http://www.linkedin.com/pulse/dynamodb-elasticache-linq2dynamodb-ionic-practice-lepeshenkov) will be completely practical, and we'll be creating a simple OData service with Linq2DynamoDB and a mobile client application with [Ionic framework](http://ionicframework.com/) and [AngularJS](http://angularjs.org/). Please, stay tuned.
+So, this purely theoretical post about creating cloud services with DynamoDB, ElastiCache, C# and OData is finally over. The [next](https://scale-tone.github.io/2016/03/17/dynamodb-elasticache-linq2dynamodb-odata-practice) [two](https://scale-tone.github.io/2016/03/19/dynamodb-elasticache-linq2dynamodb-ionic-practice) will be completely practical, and we'll be creating a simple OData service with Linq2DynamoDB and a mobile client application with [Ionic framework](http://ionicframework.com/) and [AngularJS](http://angularjs.org/). Please, stay tuned.

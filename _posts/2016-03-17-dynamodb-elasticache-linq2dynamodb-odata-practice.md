@@ -3,7 +3,6 @@ title: DynamoDB + ElastiCache + Linq2DynamoDB + OData. Practice. Backend.
 permalink: /2016/03/17/dynamodb-elasticache-linq2dynamodb-odata-practice
 ---
 ![teaser]({{ site.url }}/images/linq2dynamodb/teaser2.png)
-
 # DynamoDB + ElastiCache + Linq2DynamoDB + OData. Practice. Backend.
 
 In my [previous post](https://scale-tone.github.io/2016/03/13/dynamodb-elasticache-linq2dynamodb-odata-theory) I was talking about concerns, that you might experience when developing cloud services with AWS DynamoDB and C#, and how [Linq2DynamoDB](https://github.com/scale-tone/linq2dynamodb) can help. Now let's do a practical exercise and create a simple OData resource for storing and querying for notes. The data will be stored in AWS DynamoDB and cached in [Redis](https://redis.io/). The service will also implement user authentication by validating and parsing [OpenID Connect](https://en.wikipedia.org/wiki/OpenID_Connect) **ID tokens** passed via **Authorization** HTTP-header. This will allow us to authenticate users with their Google Account credentials.
@@ -231,4 +230,4 @@ By now our simple **Notes** OData resource is ready. If you have AWS Toolkit for
 
 Or you can host your service in Windows Azure (it's [Azure Redis Cache](https://azure.microsoft.com/en-us/documentation/services/redis-cache/) would do as well). Or wherever you like...
 
-In the next post I'll show you, how to consume this service from multi-platform mobile client built with brilliant [Ionic framework](http://ionicframework.com/) and [AngularJS](https://angularjs.org/). Please, stay tuned.
+In the [next post](https://scale-tone.github.io/2016/03/19/dynamodb-elasticache-linq2dynamodb-ionic-practice) I'll show you, how to consume this service from multi-platform mobile client built with brilliant [Ionic framework](http://ionicframework.com/) and [AngularJS](https://angularjs.org/). Please, stay tuned.

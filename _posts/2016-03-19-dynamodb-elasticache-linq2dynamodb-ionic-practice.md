@@ -3,7 +3,6 @@ title: DynamoDB + ElastiCache + Linq2DynamoDB + Ionic. Practice. Mobile Client.
 permalink: /2016/03/19/dynamodb-elasticache-linq2dynamodb-ionic-practice
 ---
 ![teaser]({{ site.url }}/images/linq2dynamodb/teaser3.png)
-
 # DynamoDB + ElastiCache + Linq2DynamoDB + Ionic. Practice. Mobile Client.
 
 In [my previous post](https://scale-tone.github.io/2016/03/17/dynamodb-elasticache-linq2dynamodb-odata-practice) I showed, how to take advantage of [Linq2DynamoDB](https://github.com/scale-tone/linq2dynamodb) for creating an [OData resource](http://www.odata.org/), that stores data in [AWS DynamoDB](https://aws.amazon.com/dynamodb/) and caches them in [Redis](http://redis.io/). Now let's consume that OData resource from JavaScript code. We'll build a simple yet multi-platform **MobileNotes** application with [Ionic framework](http://ionicframework.com/). Ionic is really brilliant, because it allows you to create templates for mobile JS-based applications in minutes and brings you all the most wanted JavaScript libraries out-of-the-box.
@@ -25,7 +24,7 @@ Ionic app template, that you just created, already contains all major libraries 
       "ionic": "driftyco/ionic-bower#1.2.4",
       "angular-resource": "1.4.3",
       "bootstrap": "3.3.4"
-      }
+   }
 }
 ```
 
@@ -35,9 +34,7 @@ Now open the **app.js** file and add an AngularJS controller called **maincontro
 
 ```
 .controller('maincontroller', ['$scope', '$resource', '$http', '$q', function ($scope, $resource, $http, $q) {
-
    // here goes the controller code
-
 }])
 ```
 
