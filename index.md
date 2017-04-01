@@ -1,6 +1,4 @@
-<head>
-    <title>scale-tone's blog</title>
-</head>
+% scale-tone's blog
 
 ## It's me, Konstantin Lepeshenkov
 
