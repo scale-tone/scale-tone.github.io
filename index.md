@@ -1,5 +1,3 @@
-% scale-tone's blog
-
 ## It's me, Konstantin Lepeshenkov
 
 Former software architect at Kaspersky Lab, I'm currently working for Microsoft.
