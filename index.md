@@ -1,3 +1,7 @@
+<head>
+    <title>scale-tone's blog</title>
+</head>
+
 ## It's me, Konstantin Lepeshenkov
 
 Former software architect at Kaspersky Lab, I'm currently working for Microsoft.
