@@ -66,7 +66,7 @@ static NotesDataContext()
 
    new DataContext(DynamoDbClient, string.Empty).CreateTableIfNotExists
    (
-      new CreateTableArgs[Note>("UserId", typeof(string), g => g.ID )
+      new CreateTableArgs\<Note>("UserId", typeof(string), g => g.ID )
    );
 }
 ```
