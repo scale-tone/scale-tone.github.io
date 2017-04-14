@@ -79,7 +79,7 @@ static NotesController()
 		
 The last code line here creates the Note table, if it doesn't exist yet, and the **"UserId"** string defines a name for the **HashKey** field. 
 
-6\. Now go to your **WebApiConfig.Register** method and replace Web API initialization code there with the following:
+7\. Now go to your **WebApiConfig.Register** method and replace Web API initialization code there with the following:
 
 ```
 public static void Register(HttpConfiguration config)
@@ -90,7 +90,7 @@ public static void Register(HttpConfiguration config)
 
 This code uses [Linq2DynamoDbModelBuilder](https://github.com/scale-tone/linq2dynamodb/blob/master/Sources/Linq2DynamoDb.WebApi.OData/Linq2DynamoDbModelBuilder.cs) helper class to map an OData route for our **Note** entity. If you have more DynamoDB tables (and therefore more entities and more corresponding controllers), you'll need to map them as well, by chaining more **WithEntitySet\<TEntity>()** method calls.
 
-7\. Add AWS credentials and Redis connection string to your **web.config** file:
+8\. Add AWS credentials and Redis connection string to your **web.config** file:
 
 ```
 <appSettings>
@@ -113,7 +113,7 @@ Add some records to the table via [AWS Console](https://aws.amazon.com/ru/consol
 
 Yet again the last thing to do on the server side is to implement user authentication and fill the **UserId** field with something more user-specific. Let's use [Google's ID tokens](https://developers.google.com/identity/protocols/OpenIDConnect), as we did before for [WCF Data Services](https://scale-tone.github.io/2016/03/17/dynamodb-elasticache-linq2dynamodb-odata-practice).
 
-8\. Add a class named **GoogleJwtParser** to your project and replace it's code with the following:
+9\. Add a class named **GoogleJwtParser** to your project and replace it's code with the following:
 
 ```
 class GoogleJwtParser
@@ -160,7 +160,7 @@ class GoogleJwtParser
 
 This class uses **JwtSecurityTokenHandler** tool from [System.IdentityModel.Tokens.Jwt](https://www.nuget.org/packages/System.IdentityModel.Tokens.Jwt/4.0.2.206221351) package for dealing with tokens. Because Google's **ID token** is signed with a certificate, the public part of that certificate must be downloaded from Google site, and that's what happens at each service startup.
 
-11\. Now add the following method to your **NotesController** class:
+10\. Now add the following method to your **NotesController** class:
 
 ```
 private static string GetUserIdFromAuthorizationHeader()
@@ -178,7 +178,7 @@ private static string GetUserIdFromAuthorizationHeader()
 }
 ```
 
-12\. And replace the third parameter of **DynamoDbController**'s constructor with the reference to that method:
+11\. And replace the third parameter of **DynamoDbController**'s constructor with the reference to that method:
 
 ```
 public NotesController() : base(DynamoDbClient, string.Empty, GetUserIdFromAuthorizationHeader, () => new RedisTableCache(RedisConn))
