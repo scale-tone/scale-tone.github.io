@@ -72,7 +72,7 @@ static NotesController()
 
 	new DataContext(DynamoDbClient, string.Empty).CreateTableIfNotExists
 	(
-	   new CreateTableArgs\<Note> ("UserId", typeof(string), g => g.ID )
+	   new CreateTableArgs<Note> ("UserId", typeof(string), g => g.ID )
 	);
 }
 ```
@@ -87,6 +87,8 @@ public static void Register(HttpConfiguration config)
 	new Linq2DynamoDbModelBuilder().WithEntitySet<Note>("Notes").MapODataServiceRoute(config, "ODataRoute");
 }
 ```
+
+This code uses [Linq2DynamoDbModelBuilder](https://github.com/scale-tone/linq2dynamodb/blob/master/Sources/Linq2DynamoDb.WebApi.OData/Linq2DynamoDbModelBuilder.cs) helper class to map an OData route for our **Note** entity. If you have more DynamoDB tables (and therefore more entities and more corresponding controllers), you'll need to map them as well, by chaining more **WithEntitySet\<TEntity>()** method calls.
 
 7\. Add AWS credentials and Redis connection string to your **web.config** file:
 
