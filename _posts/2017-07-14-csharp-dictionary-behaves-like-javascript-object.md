@@ -1,11 +1,11 @@
 ---
-title: C# Dictionary<> + operator++ = JavaScript object???
+title: C# Dictionary<> + operator++ == JavaScript object???
 permalink: /2017/07/14/csharp-dictionary-behaves-like-javascript-object
 ---
 ![teaser]({{ site.url }}/images/csharp/teaser1.png)
-# Dictionary<> + operator++ = JavaScript object???
+# Dictionary<> + operator++ == JavaScript object???
 
-Consider this JavaScript code:
+Consider the following JavaScript code:
 
 ```
 	var d = {"k": 0};
@@ -47,7 +47,7 @@ Now let's do the same in C#:
 	Console.WriteLine(d["k"]); // 1  But why???..
 ```
 
-The output is **1** again! But you wouldn't expect that, would you? As we all know, int is a value type, so the Dictionary’s indexer method is supposed to return a copy of the stored value. Which (the copy) would then be sent to **operator++**, and the original stored value (**0**) to be left intact. But this does not happen. Why?!...
+The output is **1** again! But you wouldn't expect that, would you? As we all know, **int** is a value type, so the **Dictionary**’s indexer method is supposed to return a copy of the stored value. Which (the copy) would then be sent to **operator++**, and the original stored value (**0**) to be left intact. But this does not happen. Why?!...
 
 The trick is being done by the compiler. For this specific line of code it "silently" adds a call to **Dictionary<>.set_Item()** method, which updates the stored value:
 
