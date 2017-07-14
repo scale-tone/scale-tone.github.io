@@ -1,9 +1,9 @@
 ---
-title: C#: Dictionary<> + operator++ = JavaScript object???
+title: Dictionary<> + operator++ = JavaScript object???
 permalink: /2017/07/14/csharp-dictionary-behaves-like-javascript-object
 ---
 ![teaser]({{ site.url }}/images/csharp/teaser1.png)
-# C#: Dictionary<> + operator++ = JavaScript object???
+# Dictionary<> + operator++ = JavaScript object???
 
 Consider this JavaScript code:
 
