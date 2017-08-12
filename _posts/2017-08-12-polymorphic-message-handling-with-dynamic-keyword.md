@@ -3,7 +3,7 @@ title: Polymorphic message handling with dynamic keyword in C#
 permalink: /2017/08/12/polymorphic-message-handling-with-dynamic-keyword
 ---
 ![teaser]({{ site.url }}/images/csharp/c-sharp-dynamic.png)
-# Polymorphic message handling with dynamic keyword in C#
+# Polymorphic message handling with dynamic keyword in C##
 
 Imagine that you have a hierarchy of messages, something like these:
 
