@@ -13,8 +13,8 @@ For sure, you’re all aware of the [memoization](https://en.wikipedia.org/wiki/
 /// </summary>
 public static Func<T1, TResult> Memoize<T1, TResult>(this Func<T1, TResult> func)
 {
-	var cache = new ConcurrentDictionary<T1, TResult>();
-	return key => cache.GetOrAdd(key, func);
+    var cache = new ConcurrentDictionary<T1, TResult>();
+    return key => cache.GetOrAdd(key, func);
 }
 ```
 
@@ -25,17 +25,17 @@ Which you then normally use like this:
 ```
 static int CalculateTheAnswer(string theQuestion)
 {
-	// emulate the Deep Thought
-	Thread.Sleep(TimeSpan.FromSeconds(10));
-	return 42;
+    // emulate the Deep Thought
+    Thread.Sleep(TimeSpan.FromSeconds(10));
+    return 42;
 }
 
 static void Main(string[] args)
 {
-	var memoizedCalculationMethod = ((Func<string, int>)CalculateTheAnswer).Memoize();
+    var memoizedCalculationMethod = ((Func<string, int>)CalculateTheAnswer).Memoize();
 
-	var answer1 = memoizedCalculationMethod("The Ultimate Question of Life, The Universe, and Everything"); // returns 42 after 10 seconds
-	var answer2 = memoizedCalculationMethod("The Ultimate Question of Life, The Universe, and Everything"); // returns 42 immediately
+    var answer1 = memoizedCalculationMethod("The Ultimate Question of Life, The Universe, and Everything"); // returns 42 after 10 seconds
+    var answer2 = memoizedCalculationMethod("The Ultimate Question of Life, The Universe, and Everything"); // returns 42 immediately
 }
 ```
 
@@ -47,8 +47,8 @@ If your calculation method takes e.g. two parameters, you can extend the approac
 /// </summary>
 public static Func<T1, T2, TResult> Memoize<T1, T2, TResult>(this Func<T1, T2, TResult> func)
 {
-	var memoizedFunc = new Func<Tuple<T1, T2>, TResult>(tuple => func(tuple.Item1, tuple.Item2)).Memoize();
-	return (t1, t2) => memoizedFunc(new Tuple<T1, T2>(t1, t2));
+    var memoizedFunc = new Func<Tuple<T1, T2>, TResult>(tuple => func(tuple.Item1, tuple.Item2)).Memoize();
+    return (t1, t2) => memoizedFunc(new Tuple<T1, T2>(t1, t2));
 }
 ```
 
@@ -62,8 +62,8 @@ While trying to use it with a method, that takes some object (reference-typed) p
 ```
 static double CalculateArea(Region region)
 {
-	Thread.Sleep(TimeSpan.FromSeconds(10));
-	return 42;
+    Thread.Sleep(TimeSpan.FromSeconds(10));
+    return 42;
 }
 ```
 
@@ -71,7 +71,7 @@ is a straightforward way to [shoot your own foot](https://english.stackexchange.
 
 So, is there a way to protect ourselves from such unexpected behavior? Or at least to provide a clear warning whenever someone tries to misuse our memoization method?
 
-To figure that out let's take a closer look at the requirements for those parameter types. In other words, let's determine the required and sufficient set of conditions for a type, that can be safely used for parameters of that memoizable method. And it's actually pretty simple: we store parameters and cached results in a **Dictionary\<TKey, TValue\>** (more precisely, in a **ConcurrentDictionary\<TKey, TValue\>**), therefore the parameter type should be able to propely act as a **Dictionary** key. And to be a proper **Dictionary** key, a type should properly implement [Equals()](https://msdn.microsoft.com/en-us/library/bsc2ak47(v=vs.110).aspx) and [GetHashCode()](https://msdn.microsoft.com/en-us/library/system.object.gethashcode(v=vs.110).aspx) methods. Value types do implement those methods properly (btw. did you know, that `123.GetHashCode() == 123` ?), as well as e.g. **string** type. But custom reference types, they, of course, by default inherit the implementation from **object**. Which is no good for us because, as you know, two different object instances are never equal to each other. So, in order to be valid parameters for a memoizable method, custom reference types need to implement those two methods in some more meaningful way. How do we check that they do?
+To figure that out let's take a closer look at the requirements for those parameter types. In other words, let's determine the required and sufficient set of conditions for a type, that can be safely used for parameters of our memoizable method. And it's actually pretty simple: we store parameters and cached results in a **Dictionary\<TKey, TValue\>** (more precisely, in a **ConcurrentDictionary\<TKey, TValue\>**), therefore the parameter type should be able to act as a **Dictionary** key. And to be a proper **Dictionary** key, a type should properly implement [Equals()](https://msdn.microsoft.com/en-us/library/bsc2ak47(v=vs.110).aspx) and [GetHashCode()](https://msdn.microsoft.com/en-us/library/system.object.gethashcode(v=vs.110).aspx) methods. Value types do implement those methods properly (btw. did you know, that `123.GetHashCode() == 123` ?), as well as e.g. **string** type. But custom reference types, they by default inherit the implementation from **object**. Which is no good for us because, as you know, two different object instances are never equal to each other. So, in order to be a valid parameter for a memoizable method, custom reference type needs to implement those two methods in some more meaningful way. How do we check that it does?
 
 Well, of course, it would be hard to automatically check, that an arbitrary class implements [Equals()](https://msdn.microsoft.com/en-us/library/bsc2ak47(v=vs.110).aspx) and  [GetHashCode()](https://msdn.microsoft.com/en-us/library/system.object.gethashcode(v=vs.110).aspx) _properly_. But what we can do - is to check, that the class _overrides_ those methods, by comparing [MethodInfo](https://msdn.microsoft.com/en-us/library/system.reflection.methodinfo(v=vs.110).aspx)'s:
 
@@ -81,12 +81,12 @@ Well, of course, it would be hard to automatically check, that an arbitrary clas
 /// </summary>
 private static bool ObjectOverridesGetHashCodeAndEquals(object obj)
 {
-	return
-	(
-		(((Func<int>)obj.GetHashCode).GetMethodInfo() != ObjectGetHashCode)
-		&&
-		(((Predicate<object>)obj.Equals).GetMethodInfo() != ObjectEquals)
-	);
+    return
+    (
+        (((Func<int>)obj.GetHashCode).GetMethodInfo() != ObjectGetHashCode)
+        &&
+        (((Predicate<object>)obj.Equals).GetMethodInfo() != ObjectEquals)
+    );
 }
 private static readonly MethodInfo ObjectGetHashCode = ((Func<int>)new object().GetHashCode).GetMethodInfo();
 private static readonly MethodInfo ObjectEquals = ((Predicate<object>)new object().Equals).GetMethodInfo();
@@ -97,13 +97,13 @@ And now, with that in place, we just need to pepper our **Memoize()** methods wi
 ```
 public static Func<T1, TResult> Memoize<T1, TResult>(this Func<T1, TResult> func)
 {
-	var cache = new ConcurrentDictionary<T1, TResult>();
-	return key =>
-	{
-		// For the sake of performance we only do this check in Debug mode
-		Debug.Assert(ObjectOverridesGetHashCodeAndEquals(key));
-		return cache.GetOrAdd(key, func);
-	};
+    var cache = new ConcurrentDictionary<T1, TResult>();
+    return key =>
+    {
+        // For the sake of performance we only do this check in Debug mode
+        Debug.Assert(ObjectOverridesGetHashCodeAndEquals(key));
+        return cache.GetOrAdd(key, func);
+    };
 }
 ```
 
