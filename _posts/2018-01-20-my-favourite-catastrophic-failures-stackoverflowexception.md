@@ -38,7 +38,7 @@ static int Main()
         Console.WriteLine("Inside try block...");
 
         // Ooops...
-		Main();
+        Main();
 
         return 0;
     }
