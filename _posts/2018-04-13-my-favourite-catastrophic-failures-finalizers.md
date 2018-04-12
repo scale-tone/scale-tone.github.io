@@ -252,7 +252,8 @@ Now run it in Release configuration. Oops, the program crashes with **ObjectDisp
 
 Why did it happen this time? Well, we force the garbage collection to be executed while the underlying stream is still being enumerated. That garbage collection causes **MyStreamAggregator**'s finalizer to be executed and the stream to be closed. Next attempt to read from it fails with **ObjectDisposedException**, which we can see on the screen. Why doesn't it throw in Debug mode (or, better to ask, why that senior developer didn't notice such a nasty bug in his code during testing)? It's because in Debug mode no optimizations are made by the compiler, and the **agg** variable is considered alive until the end of the method. While in Release mode the compiler notices that **agg** variable is not being used (it's **agg.UnderlyingStream**, that's being used, not **agg** itself) and leaves the **MyStreamAggregator** instance at garbage collector's disposal. During real service's lifetime garbage collections occur at arbitrary moments of time, therefore such crashes look absolutely random and mysterious to you. Until you look at the sources. 
 
-As you can imagine, spooky bugs like that - only noticeable in production, at random times, with no any consistent pattern - are the the worst kind of bugs to investigate. Yet so easy to avoid them: just **don't use finalizers**!
+As you can imagine, spooky bugs like that - only noticeable in production, at random times, with no any consistent pattern - are the the worst kind of bugs to investigate. Yet so easy to avoid them: just **don't use finalizers**! 
+Or, in more generic form: please, don't blindly follow all the best practices. Think them over first!
 
 ## Exceptions to the rule.
 
