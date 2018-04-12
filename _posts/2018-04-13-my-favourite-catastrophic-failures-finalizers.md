@@ -1,6 +1,6 @@
 ---
 title: My favourite catastrophic failures. №2. Toxic finalizers.
-permalink: /2018/01/20/my-favourite-catastrophic-failures-finalizers
+permalink: /2018/04/13/my-favourite-catastrophic-failures-finalizers
 ---
 ![teaser]({{ site.url }}/images/csharp/catastrophic-failure.png)
 # My favourite catastrophic failures. №2. Toxic finalizers.
@@ -55,17 +55,17 @@ Now, here are three reasons why you should avoid using finalizers in your .Net c
 2. They are harmful.
 3. They are dangerous.
 
-## Finalizers are useless.
+## 1. Finalizers are useless.
 
 As we all know, .Net provides us with the luxury of automatic memory management. The only reason for introducing finalizers (destructors in C++ terminology) was to allow .Net developers to work with unmanaged resources (e.g. Win32 handles). If you don't - you'll be really struggling to find a good use for them (see the exceptions at the end). Moreover, by default you won't be able to access unmanaged resources in your .Net project - you'll need to explicitly enable that with [AllowUnsafeBlocks](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-options/unsafe-compiler-option) switch. So, if a .Net project has some finalizable classes in it and doesn't have that flag set on - that is already quite suspicious.
 
-## Finalizers are harmful.
+## 2. Finalizers are harmful.
 
 As described by [Chris Brumme](https://blogs.msdn.microsoft.com/cbrumme/2004/02/20/finalization/), [Eric Lippert](https://ericlippert.com/2015/05/18/when-everything-you-know-is-wrong-part-one/) and others, finalizable objects are much more expensive. Their creation is slower and they live longer. Actually, the whole graph of objects reachable from a finalizable object will survive the first [GC](https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals#generations). In other words, each finalizer in your code increases your app's memory footprint and might increase it significantly. Also, depending on what actually happens in your finalizer, the performance might as well suffer significantly. Worst case is a deadlock inside it: in that case your app will quickly (but not instantly!) die of [OutOfMemoryException](https://msdn.microsoft.com/en-us/library/system.outofmemoryexception(v=vs.110).aspx).
 
-## Finalizers are dangerous.
+## 3. Finalizers are dangerous.
 
-1. Because their order of execution is unpredictable.
+###1. Because their order of execution is unpredictable.
 
 The below sample is distilled from one of the projects I was taking part of. 
 
@@ -147,7 +147,7 @@ Oops, the program crashes with **ObjectDisposedException**:
 
 Why did that happen? Exactly: because the finalizers of **MyFinalizableClass** and **TheirFinalizableClass** are executed in unpredictable order, and in this particular case **TheirFinalizableClass** was the first one. The worst thing about it is that this behavior is flaky: depending on .Net version being used, on the build configuration, on the exact place in the code or on the current Moon phase one finalizer can defeat the other. And you will only see your service crashing in arbitrary moments of time in production.
 
-2. Because their time of execution is unpredictable.
+###2. Because their time of execution is unpredictable.
 
 And this sample is a purified version of a bug that actually existed for quite a long time in some client SDK of some very well-known vendor.
 
