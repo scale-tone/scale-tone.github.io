@@ -65,7 +65,7 @@ As described by [Chris Brumme](https://blogs.msdn.microsoft.com/cbrumme/2004/02/
 
 ## 3. Finalizers are dangerous.
 
-###1. Because their order of execution is unpredictable.
+**3.1. Because their order of execution is unpredictable.**
 
 The below sample is distilled from one of the projects I was taking part of. 
 
@@ -147,7 +147,7 @@ Oops, the program crashes with **ObjectDisposedException**:
 
 Why did that happen? Exactly: because the finalizers of **MyFinalizableClass** and **TheirFinalizableClass** are executed in unpredictable order, and in this particular case **TheirFinalizableClass** was the first one. The worst thing about it is that this behavior is flaky: depending on .Net version being used, on the build configuration, on the exact place in the code or on the current Moon phase one finalizer can defeat the other. And you will only see your service crashing in arbitrary moments of time in production.
 
-###2. Because their time of execution is unpredictable.
+**3.2. Because their time of execution is unpredictable.**
 
 And this sample is a purified version of a bug that actually existed for quite a long time in some client SDK of some very well-known vendor.
 
