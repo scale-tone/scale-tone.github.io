@@ -67,7 +67,7 @@ As described by [Chris Brumme](https://blogs.msdn.microsoft.com/cbrumme/2004/02/
 
 **3.1. Because their order of execution is unpredictable.**
 
-The below sample is distilled from one of the projects I was taking part of. 
+The below sample is distilled from one of the projects I was taking part in. 
 
 Let's say you have yourself a third-party managed wrapper library, that internally handles some unmanaged resource. Let's model the behavior of that unmanaged resource like this:
 
