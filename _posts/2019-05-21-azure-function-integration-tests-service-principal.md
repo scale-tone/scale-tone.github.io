@@ -34,9 +34,7 @@ That command outputs some JSON, from which you need to take and memorize the **o
 From the command output memorize the **appId** value, which we will now call **ClientId**.
 
 4. In Azure Portal go to **Azure Active Directory->App Registrations** and find your new AAD app there by display name or by **ClientId**. Then go to **Expose an API** tab and create the **Application ID URI** value for your app, by pressing the **Set** button:
-
 ![set-application-id-uri]({{ site.url }}/images/aad/set-application-id-uri.png)
-
 The portal will produce and apply some default value for **Application ID URI**, which you need to memorize as well. Further on we'll refer to this value as **ResourceId**.
 
 5. [Configure AAD authentication](https://docs.microsoft.com/en-us/azure/app-service/configure-authentication-provider-aad) for your backend App Service, in addition to all other types of authentication configured. Choose **Advanced** management mode, specify **ClientId** from step3 as the Client ID and add **ResourceId** from step 4 to the list of **ALLOWED TOKEN AUDIENCES**.
