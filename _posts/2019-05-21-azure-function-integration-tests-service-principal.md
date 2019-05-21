@@ -58,11 +58,11 @@ A zero GUID is intended, don't be surprised. It just means that we're not using 
 ```
    RunAs=App;AppId=<appId-from-step1>;TenantId=<your-AAD-tenantId>;AppKey=<password-from-step1>
 ```
-Save this string as a **AzureServicesAuthConnectionString** environment variable locally or as your Release Pipeline Parameter in Azure DevOps. From now on the integration test should be able to generate an access token: 
+Save this string as an **AzureServicesAuthConnectionString** environment variable locally or as your Release Pipeline Parameter in Azure DevOps. From now on the integration test should be able to generate an access token: 
 ```
    var azureServiceTokenProvider = new AzureServiceTokenProvider();
    string accessToken = await azureServiceTokenProvider.GetAccessTokenAsync("<ResourceId>");
 ```
-and call your backend with it. Not directly, of course, but by [exchanging it](https://github.com/scale-tone/WhatIfDemo/blob/master/WhatIfDemo-Functions.IntegrationTest/IntegrationTest.cs#L44) to an **Easy Auth** session token and then submitting this session token via **X-ZUMO-AUTH** HTTP header.
+and call your backend with it. Not directly, of course, but by [exchanging it](https://github.com/scale-tone/WhatIfDemo/blob/master/WhatIfDemo-Functions.IntegrationTest/IntegrationTest.cs#L44) to an **Easy Auth** session token and then submitting this session token via [**X-ZUMO-AUTH** HTTP header](https://docs.microsoft.com/en-us/azure/app-service/app-service-authentication-how-to#validate-tokens-from-providers).
 
 As a wrap-up: indeed, this post appeared to be longer than expected, and those eight simple steps do not look so simple, but I still think the result is worth the effort. A final note: for all of this to work, you Azure Functions backend doesn't need to be .Net-based, you can write in any [supported language](https://docs.microsoft.com/en-us/azure/azure-functions/supported-languages). The same approach with Service Principals could be used for doing service-to-service calls, but a much better idea would be to [utilize Azure Managed Identities for that scenario](https://joonasw.net/view/calling-your-apis-with-aad-msi-using-app-permissions). Also it doesn't necessarity need to be Azure Functions, **Easy Auth** authentication layer is available for anything that's hosted as an Azure App Service.
