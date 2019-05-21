@@ -61,8 +61,7 @@ A zero GUID is intended, don't be surprised. It just means that we're not using 
 Save this string as a **AzureServicesAuthConnectionString** environment variable locally or as your Release Pipeline Parameter in Azure DevOps. From now on the integration test should be able to generate an access token: 
 ```
    var azureServiceTokenProvider = new AzureServiceTokenProvider();
-   string accessToken = await azureServiceTokenProvider.GetAccessTokenAsync("ResourceId");
-
+   string accessToken = await azureServiceTokenProvider.GetAccessTokenAsync("<ResourceId">);
 ```
 and call your backend with it. Not directly, of course, but by [exchanging it](https://github.com/scale-tone/WhatIfDemo/blob/master/WhatIfDemo-Functions.IntegrationTest/IntegrationTest.cs#L44) to an **Easy Auth** session token and then submitting this session token via **X-ZUMO-AUTH** HTTP header.
 
