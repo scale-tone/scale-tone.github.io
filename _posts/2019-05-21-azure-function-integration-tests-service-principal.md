@@ -1,9 +1,9 @@
 ---
-title: Integration tests for your B2C RESTful backend with AAD Service Principals.
+title: Integration tests for your B2C RESTful backend with Azure Service Principals.
 permalink: /2019/05/21/azure-function-integration-tests-service-principal
 ---
 ![teaser]({{ site.url }}/images/aad/teaser1.png)
-# Integration tests for your B2C RESTful backend with AAD Service Principals.
+# Integration tests for your B2C RESTful backend with Azure Service Principals.
 
 Suppose you have a typical SPA (Single-Page Application) written with whatever JS framework you prefer, communicating with a RESTful backend implemented with Azure Functions. Let's say, your solution is B2C (Business-to-Consumer), and therefore you would probably want to authenticate your users via some well-known public authentication providers, e.g. Facebook. And in that case the [**Easy Auth** authentication layer](https://cgillum.tech/2016/05/27/app-service-auth-and-azure-ad-b2c/) would be very handy, abstracting your backend code from authN/authZ-related boilerplate. The only authN/authZ-specific piece in your backend code would then be extracting some basic info about the user - userId etc., and that code [could look like this](https://github.com/scale-tone/WhatIfDemo/blob/master/WhatIfDemo-Functions.Common/Helpers.cs#L65).
 
