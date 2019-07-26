@@ -3,7 +3,7 @@ title: Introducing Durable Functions Monitor.
 permalink: /2019/07/26/introducing-durable-functions-monitor
 ---
 ![teaser]({{ site.url }}/images/dfm/main-page.png)
-# Introducing Durable Functions Monitor.
+# Introducing [Durable Functions Monitor](https://github.com/scale-tone/DurableFunctionsMonitor).
 
 As you know, [Azure Durable Functions](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-overview) give you an elegant way of building Reliable Stateful Services for the Cloud, while staying beautifully serverless. In fact, they let you apply advanced architectural patterns, known as [Saga](https://microservices.io/patterns/data/saga.html) (sometimes being called a Workflow), or [Process Manager](https://docs.microsoft.com/en-us/previous-versions/msp-n-p/jj591569(v=pandp.10)) (pretty close to Sagas), or even [Actor Model](https://doc.akka.io/docs/akka/current/guide/actors-intro.html) with minimum efforts, so that your code looks simple and understandable. And it is the underlying framework that splits your code into pieces, that might end up being executed on different VMs, retried and even compensated on failures. 
 
