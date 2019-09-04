@@ -1,9 +1,9 @@
 ---
-title: How to serve your static content with Azure Functions.
+title: How to serve static content with Azure Functions.
 permalink: /2019/09/02/how-to-serve-static-content-with-azure-functions
 ---
 ![teaser]({{ site.url }}/images/functions/teaser1.png)
-# How to serve your static content with Azure Functions.
+# How to serve static content with Azure Functions.
 
 
 ## **Easy!**
@@ -19,11 +19,11 @@ The above file mappings are relevant for React-based web apps, but you can easil
 
 Yes, basically, we're indeed re-inventing a web server here. But there're **benefits**.
 
-Benefit #1. No need to search for a separate hosting solution, e.g. [static website hosting in Azure Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-static-website) or another Azure App Service instance.
+**Benefit #1**. No need to search for a separate hosting solution, e.g. [static website hosting in Azure Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-static-website) or another Azure App Service instance.
 
-Benefit #2. Since your statics are now under the same base URL as your REST backend - no need to worry about CORS!
+**Benefit #2**. Since your statics are now under the same base URL as your REST backend - no need to worry about CORS!
 
-Benefit #3. By configuring [EasyAuth](https://docs.microsoft.com/en-us/azure/app-service/overview-authentication-authorization#authentication-flow) with [server-directed login flow](https://github.com/cgillum/easyauth/wiki/Login#server-directed-login) you get basic authN/authZ functionality **for free**, without any client-side SDKs or extra JavaScript code required. Configure the AAD authentication provider for your Azure Function App with **Express** setup: 
+**Benefit #3**. By configuring [EasyAuth](https://docs.microsoft.com/en-us/azure/app-service/overview-authentication-authorization#authentication-flow) with [server-directed login flow](https://github.com/cgillum/easyauth/wiki/Login#server-directed-login) you get basic authN/authZ functionality **for free**, without any client-side SDKs or extra JavaScript code required. Configure the AAD authentication provider for your Azure Function App with **Express** setup: 
 ![image1]({{ site.url }}/images/aad/express-setup.png)
 
 and set **Action to take when request is not authenticated** to **Log in with Azure Active Directory**: 
