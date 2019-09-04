@@ -5,7 +5,8 @@ permalink: /2019/09/02/how-to-serve-static-content-with-azure-functions
 ![teaser]({{ site.url }}/images/functions/teaser1.png)
 # How to serve your static content with Azure Functions.
 
-**Easy!**
+
+## **Easy!**
 
 C#:
 <script src="https://gist.github.com/scale-tone/ed4d9756d1bcebf21f1c93e5a157d3e1.js"></script>
