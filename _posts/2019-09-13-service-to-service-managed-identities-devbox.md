@@ -87,12 +87,13 @@ Fortunately, it is now also possible. The above token generation code can also w
     az account show
 ```
 
+    
     When running locally, **AzureServiceTokenProvider** tries to reuse your credentials saved by **Azure CLI** for generating tokens, so it is important to be properly logged in.
 
 <span>9.</span> Go to **the-callee-aad-app**'s App Registration page, choose **Expose an API** tab and add **Azure CLI** to the list of *Authorized Client Applications*:
     ![image13]({{ site.url }}/images/managed-identities/add-authorized-client-application.png)
 
-    The **Azure CLI**'s **Client ID** is **04b07795-8ddb-461a-bbee-02f9e1bf7b46**. With this step you're basically declaring: "I, **the-calleee**, am now going to accept tokens issued by Azure CLI app for its users, provided that the audience claim in them matches my Resource Id".
+    The **Azure CLI**'s **Client ID** is **04b07795-8ddb-461a-bbee-02f9e1bf7b46**. With this step you're basically declaring: "I, **the-callee**, am now going to accept tokens issued by Azure CLI app for its users, provided that the audience claim in them matches my Resource Id".
 
 <span>10.</span> Now run the token generation code locally and observe an exception:
     ![image14]({{ site.url }}/images/managed-identities/user-not-assigned-role-for-application.png)
@@ -102,8 +103,10 @@ Fortunately, it is now also possible. The above token generation code can also w
 <span>11.</span> Find **the-callee-aad-app** in *AAD Enterprise Applications* again, go to **Users and Groups**:
     ![image15]({{ site.url }}/images/managed-identities/enterprise-application-users-groups.png)
 
+
     and add some users and/or groups:
     ![image16]({{ site.url }}/images/managed-identities/enterprise-application-add-user.png)
+
 
     Give it ~10 minutes to propagate, and if you now re-run the token generation code, the token should be successfully issued and accepted by **the-callee**:
     ![image17]({{ site.url }}/images/managed-identities/the-callee-postman.png)
