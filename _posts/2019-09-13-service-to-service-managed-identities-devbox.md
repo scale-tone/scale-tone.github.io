@@ -87,28 +87,26 @@ Fortunately, it is now also possible. The above token generation code can also w
     az account show
 ```
 
-    
-    When running locally, **AzureServiceTokenProvider** tries to reuse your credentials saved by **Azure CLI** for generating tokens, so it is important to be properly logged in.
+When running locally, **AzureServiceTokenProvider** tries to reuse your credentials saved by **Azure CLI** for generating tokens, so it is important to be properly logged in.
 
 <span>9.</span> Go to **the-callee-aad-app**'s App Registration page, choose **Expose an API** tab and add **Azure CLI** to the list of *Authorized Client Applications*:
     ![image13]({{ site.url }}/images/managed-identities/add-authorized-client-application.png)
 
-    The **Azure CLI**'s **Client ID** is **04b07795-8ddb-461a-bbee-02f9e1bf7b46**. With this step you're basically declaring: "I, **the-callee**, am now going to accept tokens issued by Azure CLI app for its users, provided that the audience claim in them matches my Resource Id".
+The **Azure CLI**'s **Client ID** is **04b07795-8ddb-461a-bbee-02f9e1bf7b46**. With this step you're basically declaring: "I, **the-callee**, am now going to accept tokens issued by Azure CLI app for its users, provided that the audience claim in them matches my Resource Id".
 
 <span>10.</span> Now run the token generation code locally and observe an exception:
     ![image14]({{ site.url }}/images/managed-identities/user-not-assigned-role-for-application.png)
 
-    This tells us that not all users are allowed to obtain these tokens, but only whitelisted ones. So, you now need to whitelist yourself (and probably other team members).
+This tells us that not all users are allowed to obtain these tokens, but only whitelisted ones. So, you now need to whitelist yourself (and probably other team members).
 
 <span>11.</span> Find **the-callee-aad-app** in *AAD Enterprise Applications* again, go to **Users and Groups**:
     ![image15]({{ site.url }}/images/managed-identities/enterprise-application-users-groups.png)
 
-
-    and add some users and/or groups:
+and add some users and/or groups:
     ![image16]({{ site.url }}/images/managed-identities/enterprise-application-add-user.png)
 
 
-    Give it ~10 minutes to propagate, and if you now re-run the token generation code, the token should be successfully issued and accepted by **the-callee**:
+Give it ~10 minutes to propagate, and if you now re-run the token generation code, the token should be successfully issued and accepted by **the-callee**:
     ![image17]({{ site.url }}/images/managed-identities/the-callee-postman.png)
 
 If you decode this token (with e.g. https://jwt.io), you'll notice that, unlike the token for Managed Identity, this one is *user-specific*, and it has your name in it. And of course, it is important to remember, that steps 8-11 should only be executed for dev environments. Prod (and probably test also) environments should only utilize Managed Identities and never be accessible from devboxes.
