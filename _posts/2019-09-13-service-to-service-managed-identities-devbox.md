@@ -29,32 +29,33 @@ OK, so you have two RESTful services running in Azure - **the-caller** and **the
     ![image5]({{ site.url }}/images/managed-identities/easyauth-aad-express-mode.png)
 
     Note the name of AAD app, that will be created for you as part of *Express Mode* setup. On the screenshot above it is **the-callee-aad-app**.
+
     NOTE: if your **the-callee** already has an AAD app, no need to recreate it. Also it's perfectly OK to use *Advanced Mode*, just in that case you'll need to create an AAD app and put some more parameters manually.
 
-3. This step is **essential**, otherwise **the-callee** might potentially be left accessible by unauthorized users. Go to **AAD Enterprise Applications**:
+3. This step is **essential**, otherwise **the-callee** might potentially be left accessible by unauthorized users. Go to *AAD Enterprise Applications*:
     ![image6]({{ site.url }}/images/managed-identities/enterprise-applications-link.png)
 
     , find **the-callee-aad-app** there by name:
     ![image7]({{ site.url }}/images/managed-identities/enterprise-applications-find-by-name.png)
     
-    , open its **Properties** tab and ensure that **User Assignment Required** is set to **Yes** and **Visible to Users** is set to **No**:
+    , open its *Properties* tab and ensure that **User Assignment Required** is set to **Yes** and **Visible to Users** is set to **No**:
     ![image8]({{ site.url }}/images/managed-identities/aad-app-user-assignment-required.png)
 
-    Since **the-callee** should only be callable from another service (and never with a *user-specific* access token), no user should ever be allowed to login to **the-callee-aad-app** with [OAuth2 Implicit Grant flow](https://docs.microsoft.com/en-us/azure/active-directory/develop/v1-oauth2-implicit-grant-flow), and that's what we ensure here. 
+    Since our current goal is to make **the-callee** only callable from another service (and never with a *user-specific* access token), no arbitrary user should ever be allowed to login to **the-callee-aad-app** with [OAuth2 Implicit Grant flow](https://docs.microsoft.com/en-us/azure/active-directory/develop/v1-oauth2-implicit-grant-flow), and that's what we ensure here. 
 
-4. While you're still on the **Properties** tab, take a note of **the-callee-aad-app**'s Object ID. Let's call it **CalleeObjectId**, we'll need it later for making a role assignment.
+4. While you're still on the *Properties* tab, take a note of **the-callee-aad-app**'s Object ID. Let's call it **CalleeObjectId**, we'll need it later for making a role assignment.
 
-5. To be even more sure that **the-callee-aad-app** is configured properly, go to **AAD App Registrations**, find **the-callee-aad-app** there by name:
+5. To be even more sure that **the-callee-aad-app** is configured properly, go to *AAD App Registrations*, find **the-callee-aad-app** there by name:
     ![image9]({{ site.url }}/images/managed-identities/app-registrations-link.png)
 
-    and on the **Authentication** tab ensure that neither *Access tokens* nor *ID tokens* are enabled:
+    and on the *Authentication* tab check that neither *Access tokens* nor *ID tokens* are enabled:
 
     ![image10]({{ site.url }}/images/managed-identities/app-registrations-disable-implicit-grant.png)
 
-6. While **the-callee-aad-app**'s App Registration page is still open, go to **Expose an API** tab and take a note of it's **Application ID URI** value:
+6. While **the-callee-aad-app**'s App Registration page is still open, go to *Expose an API* tab and take a note of it's **Application ID URI** value:
     ![image11]({{ site.url }}/images/managed-identities/app-registrations-application-id-uri.png)
 
-    Let's call this value **CalleeResourceId**, and this is what your code will be using when obtaining access tokens. It might happen that your **Application ID URI** is empty - in this case you just need to set it (default value provided by Azure Portal will do).
+    Let's call this value **CalleeResourceId**, and this is what your code will be using when obtaining access tokens. It might happen that your **Application ID URI** is empty - in this case you just need to set it to something (default value provided by Azure Portal will work).
 
 7. Finally, grant **the-caller** access rights to **the-callee** (yes, [AzureAD Powershell Module](https://docs.microsoft.com/en-us/powershell/module/azuread/?view=azureadps-2.0) is currently the only way of doing this):
 ```
@@ -99,7 +100,7 @@ The **Azure CLI**'s **Client ID** is **04b07795-8ddb-461a-bbee-02f9e1bf7b46**. W
 
 This tells us that not all users are allowed to obtain these tokens, but only whitelisted ones. So, you now need to whitelist yourself (and probably other team members).
 
-<span>11.</span> Find **the-callee-aad-app** in *AAD Enterprise Applications* again, go to **Users and Groups**:
+<span>11.</span> Find **the-callee-aad-app** in *AAD Enterprise Applications* again, go to *Users and Groups*:
     ![image15]({{ site.url }}/images/managed-identities/enterprise-application-users-groups.png)
 
 and add some users and/or groups:
