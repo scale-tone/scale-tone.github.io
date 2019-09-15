@@ -75,9 +75,12 @@ OK, so you have two RESTful services running in Azure - **the-caller** and **the
     **AzureServiceTokenProvider** class comes from [Microsoft.Azure.Services.AppAuthentication](https://www.nuget.org/packages/Microsoft.Azure.Services.AppAuthentication) library and does all the token generation magic in C#. In other languages you'll need to [make a local HTTP call](https://docs.microsoft.com/en-us/azure/app-service/overview-managed-identity#using-the-rest-protocol) yourself.
 
 
+
 That's all great, you might say, but how do I now debug my stuff locally? Specifically, how do I get access tokens for calling **the-callee** from my devbox?
 
 Fortunately, it is now also possible. The above token generation code can also work locally, with no code changes required! You just need to make a bit more configurations, and here is how.
+
+
 
 8. Ensure you're logged in with a proper account into [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) on your devbox:
 ```
