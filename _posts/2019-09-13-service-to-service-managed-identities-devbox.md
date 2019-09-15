@@ -14,14 +14,12 @@ OK, so you have two RESTful services running in Azure - **the-caller** and **the
 **The-callee** can be written in any language, but needs to be hosted either as an App Service or as a Function App.
 
 1. Enable system-assigned Managed Identity for **the-caller**:
-
     ![image1]({{ site.url }}/images/managed-identities/identity-link.png)
 
-And take note of it's **Object ID**:
-
+    And take note of it's **Object ID**:
     ![image2]({{ site.url }}/images/managed-identities/identity-object-id.png)
 
-Let's call it **CallerObjectId** further on.
+    Let's call it **CallerObjectId** further on.
 
 2. Configure [EasyAuth](https://github.com/cgillum/easyauth/wiki) with AAD in *Express Mode* for **the-callee**:
 
