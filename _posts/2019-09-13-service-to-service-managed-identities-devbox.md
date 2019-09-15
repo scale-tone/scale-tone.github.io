@@ -82,24 +82,24 @@ Fortunately, it is now also possible. The above token generation code can also w
 
 
 
-8. Ensure you're logged in with a proper account into [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) on your devbox:
+<span>8.</span> Ensure you're logged in with a proper account into [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) on your devbox:
 ```
     az account show
 ```
 
     When running locally, **AzureServiceTokenProvider** tries to reuse your credentials saved by **Azure CLI** for generating tokens, so it is important to be properly logged in.
 
-9. Go to **the-callee-aad-app**'s App Registration page, choose **Expose an API** tab and add **Azure CLI** to the list of *Authorized Client Applications*:
+<span>9.</span> Go to **the-callee-aad-app**'s App Registration page, choose **Expose an API** tab and add **Azure CLI** to the list of *Authorized Client Applications*:
     ![image13]({{ site.url }}/images/managed-identities/add-authorized-client-application.png)
 
     The **Azure CLI**'s **Client ID** is **04b07795-8ddb-461a-bbee-02f9e1bf7b46**. With this step you're basically declaring: "I, **the-calleee**, am now going to accept tokens issued by Azure CLI app for its users, provided that the audience claim in them matches my Resource Id".
 
-10. Now run the token generation code locally and observe an exception:
+<span>10.</span> Now run the token generation code locally and observe an exception:
     ![image14]({{ site.url }}/images/managed-identities/user-not-assigned-role-for-application.png)
 
     This tells us that not all users are allowed to obtain these tokens, but only whitelisted ones. So, you now need to whitelist yourself (and probably other team members).
 
-11. Find **the-callee-aad-app** in *AAD Enterprise Applications* again, go to **Users and Groups**:
+<span>11.</span> Find **the-callee-aad-app** in *AAD Enterprise Applications* again, go to **Users and Groups**:
     ![image15]({{ site.url }}/images/managed-identities/enterprise-application-users-groups.png)
 
     and add some users and/or groups:
