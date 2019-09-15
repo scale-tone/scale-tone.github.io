@@ -45,37 +45,34 @@ OK, so you have two RESTful services running in Azure - **the-caller** and **the
 4. While you're still on the **Properties** tab, take a note of **the-callee-aad-app**'s Object ID. Let's call it **CalleeObjectId**, we'll need it later for making a role assignment.
 
 5. To be even more sure that **the-callee-aad-app** is configured properly, go to **AAD App Registrations**, find **the-callee-aad-app** there by name:
+    ![image9]({{ site.url }}/images/managed-identities/app-registrations-link.png)
 
-![image9]({{ site.url }}/images/managed-identities/app-registrations-link.png)
+    and on the **Authentication** tab ensure that neither *Access tokens* nor *ID tokens* are enabled:
 
-and on the **Authentication** tab ensure that neither *Access tokens* nor *ID tokens* are enabled:
-
-![image10]({{ site.url }}/images/managed-identities/app-registrations-disable-implicit-grant.png)
+    ![image10]({{ site.url }}/images/managed-identities/app-registrations-disable-implicit-grant.png)
 
 6. While **the-callee-aad-app**'s App Registration page is still open, go to **Expose an API** tab and take a note of it's **Application ID URI** value:
+    ![image11]({{ site.url }}/images/managed-identities/app-registrations-application-id-uri.png)
 
-![image11]({{ site.url }}/images/managed-identities/app-registrations-application-id-uri.png)
-
-Let's call this value **CalleeResourceId**, and this is what your code will be using when obtaining access tokens. It might happen that your **Application ID URI** is empty - in this case you just need to set it (default value provided by Azure Portal will do).
+    Let's call this value **CalleeResourceId**, and this is what your code will be using when obtaining access tokens. It might happen that your **Application ID URI** is empty - in this case you just need to set it (default value provided by Azure Portal will do).
 
 7. Finally, grant **the-caller** access rights to **the-callee** (yes, [AzureAD Powershell Module](https://docs.microsoft.com/en-us/powershell/module/azuread/?view=azureadps-2.0) is currently the only way of doing this):
 ```
    New-AzureADServiceAppRoleAssignment -Id 00000000-0000-0000-0000-000000000000 -ObjectId <CallerObjectId from step1> -PrincipalId <CallerObjectId from step1 again> -ResourceId <CalleeObjectId from step4>
 ```
 
-The **Id** parameter here is the App Role Definition Id (which you're supposed to previously define [by manually editing AAD app's manifest](https://joonasw.net/view/defining-permissions-and-roles-in-aad)), but if **the-callee** doesn't use app roles (which is quite likely for a typical backend API), then you can save your time and just specify **Guid.Null** (the *Default* role).
+    The **Id** parameter here is the App Role Definition Id (which you're supposed to previously define [by manually editing AAD app's manifest](https://joonasw.net/view/defining-permissions-and-roles-in-aad)), but if **the-callee** doesn't use app roles (which is quite likely for a typical backend API), then you can save your time and just specify **Guid.Null** (the *Default* role).
 
-Now, with the following code (being executed on **the-caller**'s instances in Azure):
+    Now, with the following code (being executed on **the-caller**'s instances in Azure):
 ```
     var tokenProvider = new AzureServiceTokenProvider();
     string accessToken = await tokenProvider.GetAccessTokenAsync("<CalleeResourceId from step6>");
 ```
 
-you obtain an access token, which is then accepted by **the-callee**:
+    you obtain an access token, which is then accepted by **the-callee**:
+    ![image12]({{ site.url }}/images/managed-identities/the-callee-postman.png)
 
-![image12]({{ site.url }}/images/managed-identities/the-callee-postman.png)
-
-**AzureServiceTokenProvider** class comes from [Microsoft.Azure.Services.AppAuthentication](https://www.nuget.org/packages/Microsoft.Azure.Services.AppAuthentication) library and does all the token generation magic in C#. In other languages you'll need to [make a local HTTP call](https://docs.microsoft.com/en-us/azure/app-service/overview-managed-identity#using-the-rest-protocol) yourself.
+    **AzureServiceTokenProvider** class comes from [Microsoft.Azure.Services.AppAuthentication](https://www.nuget.org/packages/Microsoft.Azure.Services.AppAuthentication) library and does all the token generation magic in C#. In other languages you'll need to [make a local HTTP call](https://docs.microsoft.com/en-us/azure/app-service/overview-managed-identity#using-the-rest-protocol) yourself.
 
 
 That's all great, you might say, but how do I now debug my stuff locally? Specifically, how do I get access tokens for calling **the-callee** from my devbox?
@@ -87,29 +84,26 @@ Fortunately, it is now also possible. The above token generation code can also w
     az account show
 ```
 
-When running locally, **AzureServiceTokenProvider** tries to reuse your credentials saved by **Azure CLI** for generating tokens, so it is important to be properly logged in.
+    When running locally, **AzureServiceTokenProvider** tries to reuse your credentials saved by **Azure CLI** for generating tokens, so it is important to be properly logged in.
 
 9. Go to **the-callee-aad-app**'s App Registration page, choose **Expose an API** tab and add **Azure CLI** to the list of *Authorized Client Applications*:
+    ![image13]({{ site.url }}/images/managed-identities/add-authorized-client-application.png)
 
-![image13]({{ site.url }}/images/managed-identities/add-authorized-client-application.png)
-
-The **Azure CLI**'s **Client ID** is **04b07795-8ddb-461a-bbee-02f9e1bf7b46**. With this step you're basically declaring: "I, **the-calleee**, am now going to accept tokens issued by Azure CLI app for its users, provided that the audience claim in them matches my Resource Id".
+    The **Azure CLI**'s **Client ID** is **04b07795-8ddb-461a-bbee-02f9e1bf7b46**. With this step you're basically declaring: "I, **the-calleee**, am now going to accept tokens issued by Azure CLI app for its users, provided that the audience claim in them matches my Resource Id".
 
 10. Now run the token generation code locally and observe an exception:
+    ![image14]({{ site.url }}/images/managed-identities/user-not-assigned-role-for-application.png)
 
-![image14]({{ site.url }}/images/managed-identities/user-not-assigned-role-for-application.png)
-
-This tells us that not all users are allowed to obtain these tokens, but only whitelisted ones. So, you now need to whitelist yourself (and probably other team members).
+    This tells us that not all users are allowed to obtain these tokens, but only whitelisted ones. So, you now need to whitelist yourself (and probably other team members).
 
 11. Find **the-callee-aad-app** in *AAD Enterprise Applications* again, go to **Users and Groups**:
+    ![image15]({{ site.url }}/images/managed-identities/enterprise-application-users-groups.png)
 
-![image15]({{ site.url }}/images/managed-identities/enterprise-application-users-groups.png)
+    and add some users and/or groups:
+    ![image16]({{ site.url }}/images/managed-identities/enterprise-application-add-user.png)
 
-and add some users and/or groups:
-![image16]({{ site.url }}/images/managed-identities/enterprise-application-add-user.png)
-
-Give it ~10 minutes to propagate, and if you now re-run the token generation code, the token should be successfully issued and accepted by **the-callee**:
-![image17]({{ site.url }}/images/managed-identities/the-callee-postman.png)
+    Give it ~10 minutes to propagate, and if you now re-run the token generation code, the token should be successfully issued and accepted by **the-callee**:
+    ![image17]({{ site.url }}/images/managed-identities/the-callee-postman.png)
 
 If you decode this token (with e.g. https://jwt.io), you'll notice that, unlike the token for Managed Identity, this one is *user-specific*, and it has your name in it. And of course, it is important to remember, that steps 8-11 should only be executed for dev environments. Prod (and probably test also) environments should only utilize Managed Identities and never be accessible from devboxes.
 
