@@ -15,11 +15,11 @@ OK, so you have two RESTful services running in Azure - **the-caller** and **the
 
 1. Enable system-assigned Managed Identity for **the-caller**:
 
-![image1]({{ site.url }}/images/managed-identities/identity-link.png)
+    ![image1]({{ site.url }}/images/managed-identities/identity-link.png)
 
 And take note of it's **Object ID**:
 
-![image2]({{ site.url }}/images/managed-identities/identity-object-id.png)
+    ![image2]({{ site.url }}/images/managed-identities/identity-object-id.png)
 
 Let's call it **CallerObjectId** further on.
 
@@ -118,4 +118,4 @@ Give it ~10 minutes to propagate, and if you now re-run the token generation cod
 
 If you decode this token (with e.g. https://jwt.io), you'll notice that, unlike the token for Managed Identity, this one is *user-specific*, and it has your name in it. And of course, it is important to remember, that steps 8-11 should only be executed for dev environments. Prod (and probably test also) environments should only utilize Managed Identities and never be accessible from devboxes.
 
-The only scenario left untouched here is how to make your integration tests work on an arbitrary build machine. That is also achievable by using Service Principals, and it was something [I blogged about a while ago](https://scale-tone.github.io/2019/05/21/azure-function-integration-tests-service-principal).
+The only scenario left untouched here is how to make your integration tests work on an arbitrary build machine. That is also achievable by using *Azure Service Principals*, and it was something [I blogged about a while ago](https://scale-tone.github.io/2019/05/21/azure-function-integration-tests-service-principal).
