@@ -22,28 +22,25 @@ OK, so you have two RESTful services running in Azure - **the-caller** and **the
     Let's call it **CallerObjectId** further on.
 
 2. Configure [EasyAuth](https://github.com/cgillum/easyauth/wiki) with AAD in *Express Mode* for **the-callee**:
+    ![image3]({{ site.url }}/images/managed-identities/easyauth-link.png)
+    
+    ![image4]({{ site.url }}/images/managed-identities/easyauth-aad.png)
+    
+    ![image5]({{ site.url }}/images/managed-identities/easyauth-aad-express-mode.png)
 
-![image3]({{ site.url }}/images/managed-identities/easyauth-link.png)
+    Note the name of AAD app, that will be created for you as part of *Express Mode* setup. On the screenshot above it is **the-callee-aad-app**.
+    NOTE: if your **the-callee** already has an AAD app, no need to recreate it. Also it's perfectly OK to use *Advanced Mode*, just in that case you'll need to create an AAD app and put some more parameters manually.
 
-![image4]({{ site.url }}/images/managed-identities/easyauth-aad.png)
+3. This step is **essential**, otherwise **the-callee** might potentially be left accessible by unauthorized users. Go to **AAD Enterprise Applications**:
+    ![image6]({{ site.url }}/images/managed-identities/enterprise-applications-link.png)
 
-![image5]({{ site.url }}/images/managed-identities/easyauth-aad-express-mode.png)
+    , find **the-callee-aad-app** there by name:
+    ![image7]({{ site.url }}/images/managed-identities/enterprise-applications-find-by-name.png)
+    
+    , open its **Properties** tab and ensure that **User Assignment Required** is set to **Yes** and **Visible to Users** is set to **No**:
+    ![image8]({{ site.url }}/images/managed-identities/aad-app-user-assignment-required.png)
 
-Note the name of AAD app, that will be created for you as part of *Express Mode* setup. On the screenshot above it is **the-callee-aad-app**.
-NOTE: if your **the-callee** already has an AAD app, no need to recreate it. Also it's perfectly OK to use *Advanced Mode*, just in that case you'll need to create an AAD app and put some more parameters manually.
-
-3. This step is **essential**, otherwise **the-callee** might potentially be left accessible by unauthorized users.
-Go to **AAD Enterprise Applications**:
-
-![image6]({{ site.url }}/images/managed-identities/enterprise-applications-link.png)
-
-, find **the-callee-aad-app** there by name:
-![image7]({{ site.url }}/images/managed-identities/enterprise-applications-find-by-name.png)
-
-, open its **Properties** tab and ensure that **User Assignment Required** is set to **Yes** and **Visible to Users** is set to **No**:
-![image8]({{ site.url }}/images/managed-identities/aad-app-user-assignment-required.png)
-
-Since **the-callee** should only be callable from another service (and never with a *user-specific* access token), no user should ever be allowed to login to **the-callee-aad-app** with [OAuth2 Implicit Grant flow](https://docs.microsoft.com/en-us/azure/active-directory/develop/v1-oauth2-implicit-grant-flow), and that's what we ensure here. 
+    Since **the-callee** should only be callable from another service (and never with a *user-specific* access token), no user should ever be allowed to login to **the-callee-aad-app** with [OAuth2 Implicit Grant flow](https://docs.microsoft.com/en-us/azure/active-directory/develop/v1-oauth2-implicit-grant-flow), and that's what we ensure here. 
 
 4. While you're still on the **Properties** tab, take a note of **the-callee-aad-app**'s Object ID. Let's call it **CalleeObjectId**, we'll need it later for making a role assignment.
 
