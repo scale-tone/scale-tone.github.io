@@ -23,3 +23,11 @@ Also, technically, nothing prevents you from deploying your Monitor to Azure. E.
 **Except that so far there is no any authentication implemented in the code**. So it would be entirely your responsibility to protect the deployed app (both the statics and the backend endpoints) from unauthorized access, e.g. by [configuring Easy Auth with AAD](https://docs.microsoft.com/en-us/azure/app-service/overview-authentication-authorization) and [validating user's roles](https://docs.microsoft.com/en-us/azure/architecture/multitenant-identity/app-roles). There're definitely plans to implement this feature, but that's not done yet.
 
 So enjoy it. And everybody is absolutely welcome to provide feedback, report issues, submit feature requests and contribute!
+
+UPD: lots of things have changed since then, especially:
+* It now [does support AAD auth](https://github.com/scale-tone/DurableFunctionsMonitor/tree/master/durablefunctionsmonitor.dotnetbackend#how-to-run), so you can safely host it in Azure.
+* It is now also available as a [VsCode extension](https://marketplace.visualstudio.com/items?itemName=DurableFunctionsMonitor.durablefunctionsmonitor).
+* It now can also show your [Durable Entities](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-entities).
+* The backend is now in C#.
+
+Please, check the latest updates [here](https://github.com/scale-tone/DurableFunctionsMonitor/releases).
