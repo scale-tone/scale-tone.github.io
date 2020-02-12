@@ -2,7 +2,7 @@
 title: Passwordless integration tests in an Azure DevOps pipeline.
 permalink: /2020/02/10/passwordless-integration-tests-azure-devops
 ---
-![teaser]({{ site.url }}/images/devops/teaser.png)
+![teaser]({{ site.url }}/images/devops/teaser1.png)
 # Passwordless integration tests in an Azure DevOps pipeline.
 
 Recently I [blogged](https://scale-tone.github.io/2019/09/13/service-to-service-managed-identities-devbox) about passwordless Service-to-Service calls with Azure Managed Identities and how to make them testable from your local devbox (still with no passwords/secrets directly involved). I also [blogged](https://scale-tone.github.io/2019/05/21/azure-function-integration-tests-service-principal) on how to make those calls from inside your integration tests, that run on an arbitrary build agent in **Azure DevOps**. That works equally well, but requires a dedicated Azure Service Principal, a *secret* for it and a bit of a configuration hassle. So now the remaining piece of the puzzle is how to make those integration tests work with no Service Principals and no passwords/secrets. Is that at least possible?
