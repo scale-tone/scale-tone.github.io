@@ -41,4 +41,4 @@ WARNING: by default, the AAD app that is created during EasyAuth Express setup a
 and then add users and/or groups explicitly via the **Users and groups** page:
 ![image5]({{ site.url }}/images/aad/users-and-groups.png)
 
-Or implement [custom claim and/or role validation](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook#working-with-client-identities) in your Azure Function code.
+Or implement [custom claim and/or role validation](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=csharp#working-with-client-identities) in your Azure Function code.
