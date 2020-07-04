@@ -15,6 +15,3 @@ Here I'm gonna talk about my open-source project(s) and some other dev stuff. St
    <img src="https://static.licdn.com/scds/common/u/img/webpromo/btn_myprofile_160x33.png" width="160" height="33" border="0" alt="View Konstantin Lepeshenkov's profile on LinkedIn">
 </a>
 
-<a href="https://twitter.com/tino_scale_tone?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">
-    Follow me on Twitter
-</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
