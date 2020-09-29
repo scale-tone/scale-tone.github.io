@@ -13,6 +13,12 @@ The client app implements the user experience known as [faceted search](https://
 
 ![transcript]({{ site.url }}/images/static-web-apps/transcript.png)
 
+Also, every time the user submits a new search query, it is reflected in the browser's address bar:
+
+![transcript]({{ site.url }}/images/static-web-apps/query-string.png)
+
+The syntax there is the same as for Cognitive Search REST API. This serves three main purposes: enables deep linking (makes those links sharable), makes navigation history ("Back" and "Forward" buttons) work and also helps you learn Cognitive Search REST API's query syntax. And feel free to use Cognitive Search query language in your search phrases (like `AND` and `OR` keywords) - those will be understood as expected.
+
 Last but not least is the matter of authentication/authorization. It is important to remember that by default there will be **no authentication** for your Azure Static Web Apps instance, so everyone will be able to access data in your search index. So it would probably be a good idea to turn authN/authZ rules on as soon as possible, and you can do that by adding the `"allowedRoles": [ "authenticated" ]` line to the pre-existing [/public/routes.json](https://github.com/scale-tone/cognitive-search-static-web-apps-sample-ui/blob/master/public/routes.json) file, so that it looks like this:
 
 ```
