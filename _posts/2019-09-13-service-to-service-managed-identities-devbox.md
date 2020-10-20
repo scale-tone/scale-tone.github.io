@@ -117,3 +117,10 @@ The only scenario left untouched here is how to make your integration tests work
 UPD1: the above-described devbox setup relies on credentials stored by **Azure CLI**, but if you have Visual Studio (2017 v15.5 or higher) installed, **AzureServiceTokenProvider** can alternatively use [its Azure credentials](https://docs.microsoft.com/en-us/azure/key-vault/service-to-service-authentication#authenticating-with-visual-studio) as well. Visual Studio's **Client ID** is **872cd9fa-d31f-45e0-9eab-6e460a02d1f1**, so you'll need to add this one to *Authorized Client Applications* instead.
 
 UPD2: **AzureServiceTokenProvider** sequentially tries multiple approaches for obtaining tokens, which might be time-consuming. To give it a hint which exact mode to use on your devbox, you can create an **AzureServicesAuthConnectionString** environment variable set to **"RunAs=Developer; DeveloperTool=AzureCli"** (to use **Azure CLI**) or to **"RunAs=Developer; DeveloperTool=VisualStudio"** (if you prefer Visual Studio).
+
+UPD3: [Here is what](https://github.com/Azure/azure-sdk-for-net/blob/master/sdk/mgmtcommon/AppAuthentication/Azure.Services.AppAuthentication/TokenProviders/AzureCliAccessTokenProvider.cs) **AzureServiceTokenProvider** is actually doing when obtaining tokens under **Azure CLI**'s context - it simply executes the following **Azure CLI** command:
+```
+    az account get-access-token -o json --resource <CalleeResourceId from step6>
+```
+
+You can do the same for testing purposes or if there's no **AzureServiceTokenProvider** for your programming language.
