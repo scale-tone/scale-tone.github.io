@@ -5,8 +5,8 @@ permalink: /2020/11/26/deploy-azure-functions-from-nuget-package
 ![teaser]({{ site.url }}/images/functions/teaser4.png)
 # How to deploy your Azure Functions from a NuGet package.
 
-Yes, it is absolutely possible:
 
+Yes, it is absolutely possible:
 <script src="https://gist.github.com/scale-tone/234c1f148b4c25678fe0dcbfe2f26126.js"></script>
 
 The above [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/) script creates a new Function App instance and deploys some .Net code into it from a local `my-local-nuget-package.nupkg` file.
