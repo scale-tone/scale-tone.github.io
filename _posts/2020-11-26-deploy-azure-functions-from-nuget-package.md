@@ -2,7 +2,7 @@
 title: How to deploy your Azure Functions from a NuGet package.
 permalink: /2020/11/26/deploy-azure-functions-from-nuget-package
 ---
-![teaser]({{ site.url }}/images/functions/teaser3.png)
+![teaser]({{ site.url }}/images/functions/teaser4.png)
 # How to deploy your Azure Functions from a NuGet package.
 
 Yes, it is absolutely possible:
@@ -23,27 +23,28 @@ Not every NuGet package can be deployed in that way, of course, but only a speci
 
 Call that file e.g. `nuspec.nuspec`, put it next to your CSPROJ-file and *include it into your project* (so that it gets copied as well):
 ```
-    <None Update="nuspec.nuspec">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+<None Update="nuspec.nuspec">
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+</None>
 ```
 Then in your project root folder run this:
 ```
-    dotnet publish
-    nuget pack bin\Debug\netcoreapp2.1\publish\nuspec.nuspec
+dotnet publish
+nuget pack bin\Debug\netcoreapp2.1\publish\nuspec.nuspec
 ```
-- and a newly created `my-nuget-packed-function.1.0.0.nupkg` file should appear.
+and a newly created `my-nuget-packed-function.1.0.0.nupkg` file should appear.
 
 For a Function written in e.g. JavaScript/TypeScript the NUSPEC-file will look a bit different:
 
 <script src="https://gist.github.com/scale-tone/7b8b7cf02705d14682ac5c013dd5abc0.js"></script>
 
 (the main difference is that, since this file now resides in the project's root folder, we'll need to exclude some stuff that should never be packed).
+
 And then you run:
 ```
-    npm install
-    npm build
-    nuget pack nuspec.nuspec
+npm install
+npm build
+nuget pack nuspec.nuspec
 ```
 to get your JavaScript/TypeScript Function App packed.
 
