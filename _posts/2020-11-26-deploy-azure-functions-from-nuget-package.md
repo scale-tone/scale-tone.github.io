@@ -6,6 +6,7 @@ permalink: /2020/11/26/deploy-azure-functions-from-nuget-package
 # How to deploy your Azure Functions from a NuGet package.
 
 
+
 Yes, it is absolutely possible:
 <script src="https://gist.github.com/scale-tone/234c1f148b4c25678fe0dcbfe2f26126.js"></script>
 
@@ -66,6 +67,6 @@ Now, ways to trigger the [Zip Deployment](https://docs.microsoft.com/en-us/azure
 }
 ```
 
-Yes, here **WEBSITE_RUN_FROM_PACKAGE** setting takes a URL (not a local file name), but this provides an extra benefit: you could have your Functions packed, versioned and delivered via a NuGet feed.
+Yes, here **WEBSITE_RUN_FROM_PACKAGE** setting takes a URL (not a local file name), and this provides an extra benefit: you could have your Functions packed, versioned and delivered via a NuGet feed.
 
 Indeed, as of today, there're lots of different ways to deploy your Function App to Azure. It is even possible to have an ARM template, that [deploys your custom Docker image](https://docs.microsoft.com/en-us/azure/azure-functions/functions-infrastructure-as-code#create-a-function-app-2) or [raw source code from your repo](https://docs.microsoft.com/en-us/azure/azure-functions/functions-infrastructure-as-code#customizing-a-deployment). Still, the approach with ARM templates + NuGet feeds might be beneficial in certain cases. E.g. if you want to distribute your Functions in a packed, versioned way, yet still allow them to stay under Consumption Plan (since the *custom Docker container*+*Consumption Plan* combination [is so far not yet supported](https://github.com/Azure/Azure-Functions/issues/1458)).
