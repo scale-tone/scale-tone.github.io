@@ -14,7 +14,7 @@ The above [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/) script create
 
 As we all know, a NuGet package is in fact [nothing but a ZIP-file](https://en.wikipedia.org/wiki/NuGet) containing whatever you put in it, plus some NuGet-related metadata. Change the package file extension from **.NUPKG** to **.ZIP** - and you'll be able to look inside of it with Windows File Explorer.
 
-On the other hand, Azure Functions do support [so called Zip Deployment](https://docs.microsoft.com/en-us/azure/azure-functions/run-functions-from-deployment-package), aka copying compiled binaries and config files from a provided ZIP-file into Function Instance's `wwwroot` folder. The same is also very true for 'classic' Azure App Services - the **WEBSITE_RUN_FROM_PACKAGE** app setting, [that enables it](https://docs.microsoft.com/en-us/azure/app-service/deploy-run-package#run-the-package), was introduced years ago.
+On the other hand, Azure Functions do support [so called Zip Deployment](https://docs.microsoft.com/en-us/azure/azure-functions/run-functions-from-deployment-package#integration-with-zip-deployment), aka copying compiled binaries and config files from a provided ZIP-file into Function Instance's `wwwroot` folder. The same is also very true for 'classic' Azure App Services - the **WEBSITE_RUN_FROM_PACKAGE** app setting, [that enables it](https://docs.microsoft.com/en-us/azure/app-service/deploy-run-package#run-the-package), was introduced years ago.
 
 Combine the above two knowledges together - and voila, [it just works](https://github.com/scale-tone/DurableFunctionsMonitor/tree/master/durablefunctionsmonitor.dotnetbackend#how-to-run).
 
@@ -67,6 +67,6 @@ Now, ways to trigger the [Zip Deployment](https://docs.microsoft.com/en-us/azure
 }
 ```
 
-Yes, here **WEBSITE_RUN_FROM_PACKAGE** setting takes a URL (not a local file name), and this provides an extra benefit: you could have your Functions packed, versioned and delivered via a NuGet feed.
+Note that here the **WEBSITE_RUN_FROM_PACKAGE** setting takes a URL (not a local file name), and this provides an extra benefit: you could have your Functions packed, versioned and delivered via a NuGet feed.
 
 Indeed, as of today, there're lots of different ways to deploy your Function App to Azure. It is even possible to have an ARM template, that [deploys your custom Docker image](https://docs.microsoft.com/en-us/azure/azure-functions/functions-infrastructure-as-code#create-a-function-app-2) or [raw source code from your repo](https://docs.microsoft.com/en-us/azure/azure-functions/functions-infrastructure-as-code#customizing-a-deployment). Still, the approach with ARM templates + NuGet feeds might be beneficial in certain cases. E.g. if you want to distribute your Functions in a packed, versioned way, yet still allow them to stay under Consumption Plan (since the *custom Docker container*+*Consumption Plan* combination [is so far not yet supported](https://github.com/Azure/Azure-Functions/issues/1458)).
