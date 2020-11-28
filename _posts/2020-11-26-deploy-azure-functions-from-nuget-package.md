@@ -22,7 +22,7 @@ Not every NuGet package can be deployed in that way, of course, but only a speci
 
 <script src="https://gist.github.com/scale-tone/9e7910960d6803ca0dd6f8ee2e76b3b1.js"></script>
 
-Call that file e.g. `nuspec.nuspec`, put it next to your CSPROJ-file and *include it into your project* (so that it gets copied as well):
+Call that file e.g. `nuspec.nuspec`, put it next to your CSPROJ-file and *include it into your project* by adding the following item to that CSPROJ-file:
 ```
 <None Update="nuspec.nuspec">
     <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
