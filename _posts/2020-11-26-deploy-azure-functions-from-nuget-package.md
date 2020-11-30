@@ -67,7 +67,7 @@ Now, ways to trigger the [Zip Deployment](https://docs.microsoft.com/en-us/azure
 }
 ```
 
-Just to eliminate (or bring more?) confusion here: **Zip Deployment**** and **Run from Package** features are very similar yet a bit different. 
+Just to eliminate (or bring more?) confusion here: **Zip Deployment** and **Run from Package** features are very similar yet a bit different. 
 * [Zip Deployment](https://docs.microsoft.com/en-us/azure/azure-functions/deployment-zip-push) unpacks a ZIP-file into `wwwroot` folder. This process is not instant and besides needs to be triggered from outside in one way or another. 
 * [Run from Package](https://docs.microsoft.com/en-us/azure/azure-functions/run-functions-from-deployment-package) expects to find a download URL of your ZIP-file in **WEBSITE_RUN_FROM_PACKAGE** setting, and then it just mounts that file as a readonly file system and makes it accessible under `wwwroot` name. This step is atomic, and it happens automatically once you provide that **WEBSITE_RUN_FROM_PACKAGE** setting or change its value. An extra benefit of this approach is that you could have your Functions packed, versioned and delivered via a NuGet feed and then set **WEBSITE_RUN_FROM_PACKAGE** to the feed's download URL (with nuget.org you can even skip package version, so that the latest version is always downloaded and installed).
 
