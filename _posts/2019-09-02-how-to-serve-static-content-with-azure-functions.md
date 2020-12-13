@@ -43,7 +43,7 @@ and then add users and/or groups explicitly via the **Users and groups** page:
 
 Or implement [custom claim and/or role validation](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=csharp#working-with-client-identities) in your Azure Function code.
 
-UPD1: the above examples will make your statics available via a URL like `https://[your-host-name]/api/ui`, but you could also easily make them served from the root (`https://[your-host-name]`). For that you need to set the **routePrefix** setting to a blank string in your **host.json**:
+UPD1: the above examples will make your statics available via a URL like *https://[your-host-name]/api/ui*, but you could also easily make them served from the root (*https://[your-host-name]*). Just set the **routePrefix** setting to a blank string in your **host.json**:
 ```
 {
     "version": "2.0",
@@ -54,4 +54,4 @@ UPD1: the above examples will make your statics available via a URL like `https:
     }
 }
 ```
-But this change will also overshadow all your HTTP-triggered API methods (if you have any), so you will also need to explicitly define routings for those. Check out [this project](https://github.com/scale-tone/DurableFunctionsMonitor/tree/master/durablefunctionsmonitor.dotnetbackend), to see how it can be organized.
+Though this change will also overshadow all your HTTP-triggered API methods (if you have any), so you will also need to explicitly define routings for those. Check out [this project](https://github.com/scale-tone/DurableFunctionsMonitor/tree/master/durablefunctionsmonitor.dotnetbackend), to see how this can be organized.
