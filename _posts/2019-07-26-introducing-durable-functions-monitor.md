@@ -5,7 +5,9 @@ permalink: /2019/07/26/introducing-durable-functions-monitor
 ![teaser]({{ site.url }}/images/dfm/main-page.png)
 # Introducing [Durable Functions Monitor](https://github.com/scale-tone/DurableFunctionsMonitor).
 
-UPD: now also available [as a VsCode extension](https://marketplace.visualstudio.com/items?itemName=DurableFunctionsMonitor.durablefunctionsmonitor).
+UPD1: now also available [as a VsCode extension](https://marketplace.visualstudio.com/items?itemName=DurableFunctionsMonitor.durablefunctionsmonitor).
+
+Or just [![Deploy it to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fscale-tone%2FDurableFunctionsMonitor%2Fmaster%2Fdurablefunctionsmonitor.dotnetbackend%2Farm-template.json).
 
 As you know, [Azure Durable Functions](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-overview) give you an elegant way of building Reliable Stateful Services for the Cloud, while staying beautifully serverless. In fact, they let you apply advanced architectural patterns, known as [Saga](https://microservices.io/patterns/data/saga.html) (sometimes being called a Workflow), or [Process Manager](https://docs.microsoft.com/en-us/previous-versions/msp-n-p/jj591569(v=pandp.10)) (pretty close to Sagas), or even [Actor Model](https://doc.akka.io/docs/akka/current/guide/actors-intro.html) with minimum efforts, so that your code looks simple and understandable. And it is the underlying framework that splits your code into pieces, that might end up being executed on different VMs, retried and even compensated on failures. 
 
@@ -24,7 +26,7 @@ Also, technically, nothing prevents you from deploying your Monitor to Azure. E.
 
 So enjoy it. And everybody is absolutely welcome to provide feedback, report issues, submit feature requests and contribute!
 
-UPD: lots of things have changed since then, especially:
+UPD2: lots of things have changed since then, especially:
 * It now [does support AAD auth](https://github.com/scale-tone/DurableFunctionsMonitor/tree/master/durablefunctionsmonitor.dotnetbackend#how-to-run), so you can safely host it in Azure.
 * It is now also available as a [VsCode extension](https://marketplace.visualstudio.com/items?itemName=DurableFunctionsMonitor.durablefunctionsmonitor).
 * It now can also show your [Durable Entities](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-entities).
