@@ -23,9 +23,9 @@ OK, so [here is a simple sample Azure Function App](https://github.com/scale-ton
 
 It will create all relevant resources, including a Function App instance with Dedicated Plan and also a separate Application Insights instance. If you then go to that instance and monitor `EventHubEventProcessed` and `ServiceBusEventProcessed` custom metrics, it will show you a picture similar to this:
 
-![sb-vs-eh-processing-speed]({{ site.url }}/images/az-messaging/sb-vs-eh-processing-speed.png)
+![sb-vs-eh-processing-speed]({{ site.url }}/images/az-messaging/sb-vs-eh-processing-speed-1.png)
 
-As you can see, Service Bus event processing (~4K events/min) goes much faster than Event Hub event processing (~500 events/min) right from the start, even with one single computing instance (that's because even a single Functions Host efficiently parallelizes Service Bus event processing). If you then go to that Function App's 'Scale Out (App Service Plan)' tab and increase instance count to e.g. 3:
+As you can see, Service Bus event processing (~60 events/sec) goes much faster than Event Hub event processing (~10 events/sec) right from the start, even with one single computing instance (that's because even a single Functions Host efficiently parallelizes Service Bus event processing). If you then go to that Function App's 'Scale Out (App Service Plan)' tab and increase instance count to e.g. 3:
 
 ![scale-out]({{ site.url }}/images/az-messaging/scale-out.png)
 
