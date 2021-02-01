@@ -14,7 +14,8 @@ NOTE1: No, I'm not trying to say that e.g. Service Bus is anyhow "better" than e
 NOTE2: All the below demo usecases are illustrated with sample Azure Functions, that come from [this GitHub repo](https://github.com/scale-tone/az-messaging-demo) and are written in TypeScript. Those nice blue 'Deploy to Azure' buttons create Function App instances along with other relevant resources (Event Hubs and Service Bus namespaces, Application Insights instances and Storage Accounts) in your Azure Subscription and deploy source code straight into there with [Kudu App Service](https://docs.microsoft.com/en-us/azure/app-service/deploy-continuous-deployment#option-1-kudu-app-service). Don't forget to remove those resources once done.
 
 
-**False assumption 1. "Our service is as huge as Office365 (oh, yes, indeed!), so we need more performance, more scalability, more processing rate - more of everything! So we choose Event Hubs."**
+
+## False assumption 1. "Our service is as huge as Office365 (oh, yes, indeed!), so we need more performance, more scalability, more processing rate - more of everything! So we choose Event Hubs."
 
 OK, so [here is a simple sample Azure Function App](https://github.com/scale-tone/az-messaging-demo/tree/main/az-messaging-demo-1-scaling), with two functionally equal event handlers - EventHubHandler and ServiceBusHandler. Both do the same thing - take an event, emulate some processing activity by sleeping for 100 ms and then declare the event processed. Also the app contains [this Timer-triggered function](https://github.com/scale-tone/az-messaging-demo/blob/main/az-messaging-demo-1-scaling/TimerTriggeredFunc/index.ts), which produces a constant flow of events towards both of those handlers. You can quickly deploy the whole test setup with this button:
 
@@ -39,7 +40,8 @@ The reason for this behavior is that, unlike a Service Bus queue, an Event Hub p
 Lesson learned: **Azure Event Hubs** is a tool for *event stream* processing, not just event processing (mind the difference). It can *injest* your events in enormous amounts, but keeping up with the pace when *processing* them is still solely your responsibility. If your injestion rate is really so huge that no [Message Queueing Service](https://en.wikipedia.org/wiki/Message_queuing_service) can natively handle it, yet still each and every single event matters - consider hybrid scenarios like **Event Hubs** (for injestion) + **Service Bus** (for further processing), or **Event Hubs** (for injestion) + **Stream Analytics** (for aggregation) + **Service Bus** (for further processing), or **Event Hubs** (for injestion) + **Event Hubs Capture** (for capturing into storage files) + whatever technology you prefer for asynchronously processing those captured files.
 
 
-**False assumption 2. "We have those tiny little pieces of data that travel across our system. We call them *events*. So we choose Event Hubs, because it has that word in its name."**
+
+## False assumption 2. "We have those tiny little pieces of data that travel across our system. We call them *events*. So we choose Event Hubs, because it has that word in its name."
 
 "Event-driven" is not as simple as you might think. There're many important architectural concepts that accompany this pattern. For example, in your real application you would typically want your event handlers to *dynamically* subscribe and unsubscribe to/from your event source (so that they don't have to dig through the whole history of events first). In Service Bus this is considered first-class citizen functionality and is implemented with [Topics and Subscriptions](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-queues-topics-subscriptions#topics-and-subscriptions), while with Event Hubs it is much harder to achieve - you would need to configure your event processor host with [EventPosition.FromEnd](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.eventhubs.eventposition.fromend?view=azure-dotnet) setting, plus reset the [Offset](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.eventhubs.processor.lease.offset?view=azure-dotnet#Microsoft_Azure_EventHubs_Processor_Lease_Offset) value (with Azure Functions that would mean [manually dropping the checkpoint blob from underlying Storage](https://github.com/Azure/azure-functions-eventhubs-extension/issues/64#issuecomment-745728721)).
 
@@ -58,7 +60,8 @@ To resolve this particular bottleneck in this particular scenario you could [inc
 Lesson learned: never follow the White Paper, aka never make architectural decisions based solely on naming/nomenclature/taxonomy. Try to anticipate as many functional requirements as possible and match those with specific features of chosen instrument/platform. And of course, don't forget to *try it with your own hands* first.
 
 
-**False assumption 3. "Not only Event Hubs are *bigger* (whatever it means), but they also still guarantee event delivery (aka *reliable*). So we choose Event Hubs."**
+
+## False assumption 3. "Not only Event Hubs are *bigger* (whatever it means), but they also still guarantee event delivery (aka *reliable*). So we choose Event Hubs."
 
 Consider the following simple math. You have a constant ingestion rate of e.g. 100 events/sec and a processing pipeline built with Event Hubs, which is perfect in any way except that your event handler *intermittently fails and needs to be retried in ~0.5% of cases* (that's in fact a pretty good reliability number of 99.5%). Under this circumstances, what the resulting *processing rate* could be?
 
