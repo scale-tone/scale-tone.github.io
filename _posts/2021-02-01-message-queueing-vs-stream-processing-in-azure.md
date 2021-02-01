@@ -24,7 +24,11 @@ It will create all relevant resources, including a Function App instance with De
 
 ![sb-vs-eh-processing-speed]({{ site.url }}/images/az-messaging/sb-vs-eh-processing-speed.png)
 
-As you can see, Service Bus event processing (~4K events/min) goes much faster than Event Hub event processing (~500 events/min) right from the start, even with one single computing instance (that's because even a single Functions Host efficiently parallelizes Service Bus event processing). If you then go to that Function App's 'Scale Out (App Service Plan)' tab and increase instance count to e.g. 3, Service Bus processing speed will increase even more, while Event Hub processing will remain same as slow.
+As you can see, Service Bus event processing (~4K events/min) goes much faster than Event Hub event processing (~500 events/min) right from the start, even with one single computing instance (that's because even a single Functions Host efficiently parallelizes Service Bus event processing). If you then go to that Function App's 'Scale Out (App Service Plan)' tab and increase instance count to e.g. 3:
+
+![scale-out]({{ site.url }}/images/az-messaging/scale-out.png)
+
+, Service Bus processing speed will increase even more, while Event Hub processing will remain same as slow.
 
 NOTE: The above 'Deploy to Azure' button is intentionally instructed to deploy the sample into a Premium Plan limited to 1 processing instance, so that you can then manually scale it out. Normally the platform will scale out your Functions instance automatically, but it will not change the picture.
 
