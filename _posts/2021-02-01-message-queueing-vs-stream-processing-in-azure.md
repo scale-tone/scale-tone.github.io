@@ -3,7 +3,7 @@ title: Message Queueing vs. Event Stream Processing in Azure
 permalink: /2021/02/01/message-queueing-vs-stream-processing-in-azure
 ---
 ![teaser]({{ site.url }}/images/az-messaging/teaser1.png)
-# Message Queueing vs.Event Stream Processing in Azure.
+# Message Queueing vs. Event Stream Processing in Azure.
 
 
 
