@@ -1,8 +1,4 @@
-## Hey, it's me, Konstantin Lepeshenkov
-
-Former software architect at Kaspersky Lab, I currently work as a Cloud Solution Architect for Microsoft.
-
-Here I'm talking about my open-source project(s), clouds and some other dev stuff. Stay tuned.
+My name is Konstantin Lepeshenkov, I'm currently acting as a Cloud Solution Architect @ Microsoft, and here are my personal thoughts.
 
 {% for post in site.posts %}
 
