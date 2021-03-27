@@ -1,4 +1,4 @@
-## Konstantin Lepeshenkov's personal blog
+## Konstantin Lepeshenkov's blog
 
 I'm currently acting as a Cloud Solution Architect @ Microsoft, and here are my personal thoughts 👇
 
