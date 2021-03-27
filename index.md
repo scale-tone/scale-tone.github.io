@@ -1,4 +1,6 @@
-My name is Konstantin Lepeshenkov, I'm currently acting as a Cloud Solution Architect @ Microsoft, and here are my personal thoughts.
+## Konstantin Lepeshenkov's personal blog
+
+I'm currently acting as a Cloud Solution Architect @ Microsoft, and here are my personal thoughts 👇
 
 {% for post in site.posts %}
 
