@@ -54,4 +54,6 @@ UPD1: the above examples will make your statics available via a URL like *https:
     }
 }
 ```
-Though this change will also overshadow all your HTTP-triggered API methods (if you have any), so you will also need to explicitly define routings for those. Check out [this project](https://github.com/scale-tone/DurableFunctionsMonitor/tree/master/durablefunctionsmonitor.dotnetbackend), to see how this can be organized.
+Though this change will also overshadow all your HTTP-triggered API methods (if you have any), so you will also need to explicitly define routings for those.
+
+UPD2: and for pure TypeScript-based projects I now have this ready-to-use scaffolding in form of a GitHub template repo - [durable-mvc-starter](https://github.com/scale-tone/durable-mvc-starter). It includes both server-side (Azure Functions) and client-side (React+MobX) projects, they are both automatically compiled together, and server side is pre-configured to serve client statics, thus leveraging the above mentioned benefits.
