@@ -8,6 +8,7 @@ permalink: /2021/03/15/durable-mvc
 
 
 *Quick shortcut to the template repo: [durable-mvc-starter](https://github.com/scale-tone/durable-mvc-starter)*
+*Quick shortcut to the samples repo: [durable-mvc-samples](https://github.com/scale-tone/durable-mvc-samples)*
 
 Although invented decades ago, the architectural pattern known as [Actor Model](https://en.wikipedia.org/wiki/Actor_model) is now having a re-birth. In this new serverless world 'classic' Object-Oriented Programming keeps losing more and more of its power (when your class instances die too early to produce any significant work, what's the point of conceiving them?), so [Virtual Actors](https://www.microsoft.com/en-us/research/publication/orleans-distributed-virtual-actors-for-programmability-and-scalability/) now act as a modern equivalent to puny ephemeral classes from an early age. In Azure we now have [Azure Functions Durable Entities](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-entities?tabs=javascript) as yet another implementation of Virtual Actors, and it provides the advantage of writing your Actors in various programming languages, e.g. in TypeScript.
 
