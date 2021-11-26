@@ -33,9 +33,11 @@ It does not store secret values, only cryptographically strong salted SHA-256 ha
 
 KeeShepherd is not yet able to detect your secrets automatically, so you'll need to point it to them. That you do by:
 * Either **inserting** a secret at the current cursor position:
+
     <img src="https://user-images.githubusercontent.com/5447190/143601802-2338cb20-946d-4d61-8792-9ff810b974ed.png" width="500px"/>
 
 * Or **adding** the selected secret value into KeyShepherd:
+
     <img src="https://user-images.githubusercontent.com/5447190/143601857-3dd354c0-5d72-45b5-8103-0e984918aac1.png" width="500px"/>
 
 **Insert** operation by far supports Azure Key Vault, Azure Storage and custom Resource Manager REST API URLs as secret sources, but more sources are on its way.
@@ -48,7 +50,8 @@ Two types of secrets are currently supported:
 It's perfectly fine to mix both **supervised** and **managed** secrets in the same config file. A good strategy could be to mark real secrets (access keys, connection strings etc.) as managed (to keep them safe) and leave less important values like user names, application ids etc. as supervised (to make it easy to find them later).
 
 KeeShepherd can also do **automatic stashing/unstashing** once you open/close a workspace. Default mode is to automatically stash and do not automatically unstash, but you can configure this via Settings:
-![image](https://user-images.githubusercontent.com/5447190/143603144-1a003f0c-7173-4225-8fa4-102cef545a4a.png)
+    <img src="https://user-images.githubusercontent.com/5447190/143603144-1a003f0c-7173-4225-8fa4-102cef545a4a.png" width="500px"/>
+
 Automatic **stashing/unstashing** seems to be the most secure form, it ensures that your secret values are only present in the config files while you're actually working on the project (aka while a VsCode window is open). But this mechanism is, of course, not immune to VsCode accidental crashes, so better to explicitly check whether it all went as planned.
 
 As I said before, KeyShepherd does not store your secret values. In its metadata store it only stores salted SHA-256 hashes of them and their "coordinates" aka file paths and last known positions. This metadata store can be in form of:
