@@ -56,7 +56,7 @@ As I said before, KeyShepherd does not store your secret values. In its metadata
 * Shared Azure Table. This mode gives you a bird's eye view of all your (and your teammate's) secrets on all your devboxes, including [GitHub Codespaces](https://github.com/features/codespaces) (yes, KeeShepherd extension works there as well).
 
 KeeShepherd will ask you what metadata storage type you prefer at first run, but you can always change it later with `Switch to Another Metadata Storage` command:
-![image](https://user-images.githubusercontent.com/5447190/143605899-d3178d84-a126-41b4-a74e-4eb74a2b7d16.png)
+    <img src="https://user-images.githubusercontent.com/5447190/143605899-d3178d84-a126-41b4-a74e-4eb74a2b7d16.png" width="350px"/>
 
 
 
