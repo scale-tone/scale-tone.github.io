@@ -28,3 +28,18 @@ It does not store secret values, only cryptographically strong salted SHA-256 ha
     
 * show all your secrets in form of a list, thus giving your a central control point over them:
     ![image](https://user-images.githubusercontent.com/5447190/143592931-389e1f44-e8d9-40b8-b581-1f1ded51eb0b.png)
+
+KeeShepherd is not yet able to detect your secrets automatically, so you'll need to point it to them. That you do by:
+* Either **inserting** a secret at the current cursor position:
+        ![image](https://user-images.githubusercontent.com/5447190/143601802-2338cb20-946d-4d61-8792-9ff810b974ed.png)
+
+* Or **adding** the selected secret value into KeyShepherd:
+        ![image](https://user-images.githubusercontent.com/5447190/143601857-3dd354c0-5d72-45b5-8103-0e984918aac1.png)
+
+**Insert** operation by far supports Azure Key Vault, Azure Storage and custom Resource Manager REST API URLs as secret sources, but more sources are on its way.
+**Add** operation will suggest to also put the secret value into Azure Key Vault.
+
+Two types of secrets are currently supported:
+* **Supervised**. This is a lightweight form of it, just to remember where you left this secret value and to let you navigate back to it at any moment. Your actual config files are left intact.
+* **Managed** aka stashable. **Stashing does modifies your config files**, since this is the whole point of it. **Unstashing** restores secret values by fetching them from wherever they're actually stored, e.g. from Azure Key Vault.
+
