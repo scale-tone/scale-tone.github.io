@@ -33,10 +33,10 @@ It does not store secret values, only cryptographically strong salted SHA-256 ha
 
 KeeShepherd is not yet able to detect your secrets automatically, so you'll need to point it to them. That you do by:
 * Either **inserting** a secret at the current cursor position:
-        ![image](https://user-images.githubusercontent.com/5447190/143601802-2338cb20-946d-4d61-8792-9ff810b974ed.png)
+    <img src="https://user-images.githubusercontent.com/5447190/143601802-2338cb20-946d-4d61-8792-9ff810b974ed.png" width="500px"/>
 
 * Or **adding** the selected secret value into KeyShepherd:
-        ![image](https://user-images.githubusercontent.com/5447190/143601857-3dd354c0-5d72-45b5-8103-0e984918aac1.png)
+    <img src="https://user-images.githubusercontent.com/5447190/143601857-3dd354c0-5d72-45b5-8103-0e984918aac1.png" width="500px"/>
 
 **Insert** operation by far supports Azure Key Vault, Azure Storage and custom Resource Manager REST API URLs as secret sources, but more sources are on its way.
 **Add** operation will suggest to also put the secret value into Azure Key Vault.
