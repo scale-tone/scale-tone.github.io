@@ -23,8 +23,8 @@ It does not store secret values, only cryptographically strong salted SHA-256 ha
 * automatically **mask** (hide) secret values once you open a config file:
     ![image](https://user-images.githubusercontent.com/5447190/143591791-8e59a1bd-9448-441c-b99b-301da04c73f2.png)
 
-* (automatically) **stash** (aka replace with anchors like `@KeeShepherd(secret-name)`) and **unstash** (aka do the opposite) them.
+* (automatically) **stash** (aka replace with anchors like `@KeeShepherd(secret-name)`) and **unstash** (aka do the opposite) them:
     ![image](https://user-images.githubusercontent.com/5447190/143592201-94911fa8-b651-44b6-8692-4a6b2749d5a7.png)    
     
-* show all of them in form of a list, thus giving your a central control point over them.
+* show all your secrets in form of a list, thus giving your a central control point over them:
     ![image](https://user-images.githubusercontent.com/5447190/143592931-389e1f44-e8d9-40b8-b581-1f1ded51eb0b.png)
