@@ -2,7 +2,7 @@
 title: Introducing KeeShepherd
 permalink: /2021/11/26/introducing-keeshepherd
 ---
-![teaser]({{ site.url }}/images/keeshepherd/teaser1.png)
+![teaser]({{ site.url }}/images/keeshepherd/teaser2.png)
 # Introducing KeeShepherd.
 
 
