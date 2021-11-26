@@ -68,7 +68,7 @@ All of this is only the beginning, of course. Many other new features are to be 
 * Prevent accidentally committing unstashed secret values (probably, by temporarily adding their file names to .gitignore).
 * Automatically resolve secrets by names, even in a different file on a different machine.
 * Easily rotate (modify) secret values from 'SECRETS' view.
-* ... [<put your suggestions here>](https://github.com/scale-tone/kee-shepherd/issues) ...
+* ... [put your suggestions here](https://github.com/scale-tone/kee-shepherd/issues) ...
     
 Other incarnations of KeeShepherd, e.g. CLI version and/or plugins for other IDEs are also very much on the radar.
 But so far you're very welcome to [install it from VsCode marketplace](https://marketplace.visualstudio.com/items?itemName=kee-shepherd.kee-shepherd-vscode) and enjoy.
