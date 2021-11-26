@@ -9,10 +9,10 @@ permalink: /2019/09/02/how-to-serve-static-content-with-azure-functions
 ## **Easy!**
 
 C#:
-<script src="https://gist.github.com/scale-tone/ed4d9756d1bcebf21f1c93e5a157d3e1.js"></script>
+<script src="https://gist.github.com/scale-tone/e19d4edab0231aff97a55243d811ad12.js"></script>
 
 TypeScript:
-<script src="https://gist.github.com/scale-tone/dadc399b43c85353bd5069d0634a4ef4.js"></script>
+<script src="https://gist.github.com/scale-tone/e311e6cc52fcc7d79e1a06d4e6cb6dd7.js"></script>
 
 The above file mappings are relevant for React-based web apps, but you can easily change it to match e.g. Angular's build output file structure. The statics themselves you just need to copy into your Azure Function's project folder. If it is C#, then also make them be copied to the build output via your CSPROJ-file:
 <script src="https://gist.github.com/scale-tone/7d4e29381aed34b8536db04664992c2e.js"></script>
