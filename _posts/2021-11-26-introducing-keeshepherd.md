@@ -29,7 +29,7 @@ It does not store secret values, only cryptographically strong salted SHA-256 ha
 * **track** their positions within a file, so that your config files remain absolutely editable;
 
 * show all your secrets in form of a list, thus giving your a central control point over them:
-    ![image](https://user-images.githubusercontent.com/5447190/143605670-e9588533-d649-4467-bd46-dafbcb48a37b.png)
+    <img src="https://user-images.githubusercontent.com/5447190/143605670-e9588533-d649-4467-bd46-dafbcb48a37b.png" width="350px"/>
 
 KeeShepherd is not yet able to detect your secrets automatically, so you'll need to point it to them. That you do by:
 * Either **inserting** a secret at the current cursor position:
@@ -49,6 +49,7 @@ It's perfectly fine to mix both **supervised** and **managed** secrets in the sa
 
 KeeShepherd can also do **automatic stashing/unstashing** once you open/close a workspace. Default mode is to automatically stash and do not automatically unstash, but you can configure this via Settings:
 ![image](https://user-images.githubusercontent.com/5447190/143603144-1a003f0c-7173-4225-8fa4-102cef545a4a.png)
+Automatic **stashing/unstashing** seems to be the most secure form, it ensures that your secret values are only present in the config files while you're actually working on the project (aka while a VsCode window is open). But this mechanism is, of course, not immune to VsCode accidental crashes, so better to explicitly check whether it all went as planned.
 
 As I said before, KeyShepherd does not store your secret values. In its metadata store it only stores salted SHA-256 hashes of them and their "coordinates" aka file paths and last known positions. This metadata store can be in form of:
 * Local JSON-files in VsCode's global storage folder (`C:\Users\user-name\AppData\Roaming\Code\User\globalStorage\kee-shepherd.kee-shepherd-vscode` on Windows).
@@ -58,10 +59,12 @@ KeeShepherd will ask you what metadata storage type you prefer at first run, but
 ![image](https://user-images.githubusercontent.com/5447190/143605899-d3178d84-a126-41b4-a74e-4eb74a2b7d16.png)
 
 
+
 All of this is only the beginning, of course. Many other new features are to be added in the next version(s), for example:
 * More secret sources, like Azure Service Bus, Azure Event Hubs, Azure SQL etc. etc.
 * Prevent accidentally committing unstashed secret values (probably, by temporarily adding their file names to .gitignore).
 * Automatically resolve secrets by names, even in a different file on a different machine.
+* Easily rotate (modify) secret values from 'SECRETS' view.
 * ... [<put your suggestions here>](https://github.com/scale-tone/kee-shepherd/issues) ...
     
 Other incarnations of KeeShepherd, e.g. CLI version and/or plugins for other IDEs are also very much on the radar.
