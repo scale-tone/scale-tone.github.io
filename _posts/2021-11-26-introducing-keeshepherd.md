@@ -21,9 +21,9 @@ Yes, it seems like we're [heading towards the bright passwordless future](https:
 So as a temporary solution for the next decade or so I created [KeeShepherd](https://github.com/scale-tone/kee-shepherd/tree/main/kee-shepherd-vscode#readme). This tool comes [in form of a VsCode extension](https://marketplace.visualstudio.com/items?itemName=kee-shepherd.kee-shepherd-vscode), and **no, it is not a password manager**. 
 It does not store secret values, only cryptographically strong salted SHA-256 hashes of them, links to them (whether it is a link to an Azure Key Vault secret or to a secret accessible via Azure Resource Manager REST API, like [Storage access keys](https://docs.microsoft.com/en-us/rest/api/storagerp/storage-accounts/list-keys)), their lengths and positions in config files. Yet this information is enough for KeeShepherd to be able to:
 * automatically **mask** (hide) secret values once you open a config file:
-    ![image](https://user-images.githubusercontent.com/5447190/143591791-8e59a1bd-9448-441c-b99b-301da04c73f2.png)
+    ![image](https://user-images.githubusercontent.com/5447190/143609812-4e4d4426-3e09-4ae6-a51f-1a6bfedab6c2.png)
 
-* (automatically) **stash** (aka replace with anchors like `@KeeShepherd(secret-name)`) and **unstash** (aka do the opposite) them:
+* (automatically) **stash** (aka replace with anchors like `@KeeShepherd(secret-name)` ) and **unstash** (aka do the opposite) them:
     ![image](https://user-images.githubusercontent.com/5447190/143592201-94911fa8-b651-44b6-8692-4a6b2749d5a7.png)
 
 * **track** their positions within a file, so that your config files remain absolutely editable;
