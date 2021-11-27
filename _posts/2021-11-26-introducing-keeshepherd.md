@@ -59,7 +59,7 @@ It's perfectly fine to mix both **supervised** and **managed** secrets in the sa
 
 or for the entire currently open workspace (including all subfolders):
 
-<img src="https://user-images.githubusercontent.com/5447190/143690189-691b8f11-9e47-4965-8fe2-586f297e9b6e.png" width="350px"/>
+<img src="https://user-images.githubusercontent.com/5447190/143690189-691b8f11-9e47-4965-8fe2-586f297e9b6e.png" width="450px"/>
 
 KeeShepherd can also do **automatic stashing/unstashing** once you open/close a workspace. Default mode is to automatically stash and do not automatically unstash, but you can configure this via Settings:
     <img src="https://user-images.githubusercontent.com/5447190/143603144-1a003f0c-7173-4225-8fa4-102cef545a4a.png" width="500px"/>
