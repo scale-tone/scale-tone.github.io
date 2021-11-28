@@ -36,7 +36,7 @@ KeeShepherd is not yet able to detect your secrets automatically, so you'll need
 
     <img src="https://user-images.githubusercontent.com/5447190/143601802-2338cb20-946d-4d61-8792-9ff810b974ed.png" width="500px"/>
 
-* Or **adding** the selected secret value into KeyShepherd:
+* Or **adding** the selected secret value into KeeShepherd:
 
     <img src="https://user-images.githubusercontent.com/5447190/143601857-3dd354c0-5d72-45b5-8103-0e984918aac1.png" width="500px"/>
 
@@ -66,7 +66,7 @@ KeeShepherd can also do **automatic stashing/unstashing** once you open/close a 
 
 Automatic **stashing/unstashing** seems to be the most secure form, it ensures that your secret values are only present in the config files while you're actually working on the project (aka while a VsCode window is open). But this mechanism is, of course, not immune to VsCode accidental crashes, so better to explicitly check whether it all went as planned.
 
-As I said before, KeyShepherd does not store your secret values. In its metadata store it only stores salted SHA-256 hashes of them and their "coordinates" aka file paths and last known positions. This metadata store can be in form of:
+As I said before, KeeShepherd does not store your secret values. In its metadata store it only stores salted SHA-256 hashes of them and their "coordinates" aka file paths and last known positions. This metadata store can be in form of:
 * Local JSON-files in VsCode's global storage folder (`C:\Users\user-name\AppData\Roaming\Code\User\globalStorage\kee-shepherd.kee-shepherd-vscode` on Windows).
 * Shared Azure Table. This mode gives you a bird's eye view of all your (and your teammate's) secrets on all your devboxes, including [GitHub Codespaces](https://github.com/features/codespaces) (yes, KeeShepherd extension works there as well).
 
