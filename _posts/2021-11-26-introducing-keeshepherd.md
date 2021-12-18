@@ -15,6 +15,7 @@ I hate placing credentials (connection strings, access keys, secrets, passwords 
 * I always forget where I left them. So they quickly get scattered across countless folders and devboxes, like lobsters crawling out of a trap. Difficult to rotate and difficult to cleanup.
 * I always face the fear of accidentally exposing them during demo sessions. Unlike password fields in browsers, config files are just a text, and IDEs are not yet smart enough to automatically hide secrets in them.
 * I'm always afraid of accidentally committing them to the repo. `.gitignore` certainly helps, but I still need to remember to configure it properly.
+* I always get bored when re-configuring them on a fresh new devbox (e.g. on [GitHub Codespaces](https://github.com/features/codespaces)). And no, sharing config files with secrets via email is **absolutely not an option**.
 
 Yes, it seems like we're [heading towards the bright passwordless future](https://www.microsoft.com/security/blog/2021/09/15/the-passwordless-future-is-here-for-your-microsoft-account/), but for us developers working with various cloud services and databases that future hasn't arrived yet.
 
@@ -40,7 +41,7 @@ KeeShepherd is not yet able to detect your secrets automatically, so you'll need
 
     <img src="https://user-images.githubusercontent.com/5447190/143601857-3dd354c0-5d72-45b5-8103-0e984918aac1.png" width="500px"/>
 
-**Insert** operation by far supports Azure Key Vault, Azure Storage and custom Resource Manager REST API URLs as secret sources, but more sources are on its way.
+**Insert** operation by far supports Azure Key Vault, Azure Storage, Cosmos DB, Service Bus, Event Hubs, Event Grid, Azure Redis Cache, Application Insights and custom Resource Manager REST API URLs as secret sources, but more sources are on its way.
 **Add** operation will suggest to also put the secret value into Azure Key Vault.
 
 Two types of secrets are currently supported:
@@ -76,10 +77,9 @@ KeeShepherd will ask you what metadata storage type you prefer at first run, but
 
 
 All of this is only the beginning, of course. Many other new features are to be added in the next version(s), for example:
-* More secret sources, like Azure Service Bus, Azure Event Hubs, Azure SQL etc. etc.
-* Prevent accidentally committing unstashed secret values (probably, by temporarily adding their file names to .gitignore).
-* Automatically resolve secrets by names, even in a different file on a different machine.
+* More secret sources.
 * Easily rotate (modify) secret values from 'SECRETS' view.
+* More ways to visualize the list of secrets.
 * ... [put your suggestions here](https://github.com/scale-tone/kee-shepherd/issues) ...
     
 Other incarnations of KeeShepherd, e.g. CLI version and/or plugins for other IDEs are also very much on the radar.
