@@ -42,7 +42,10 @@ KeeShepherd is not yet able to detect your secrets automatically, so you'll need
     <img src="https://user-images.githubusercontent.com/5447190/143601857-3dd354c0-5d72-45b5-8103-0e984918aac1.png" width="500px"/>
 
 **Insert** operation by far supports Azure Key Vault, Azure Storage, Cosmos DB, Service Bus, Event Hubs, Event Grid, Azure Redis Cache, Application Insights and custom Resource Manager REST API URLs as secret sources, but more sources are on its way.
+
 **Add** operation will suggest to also put the secret value into Azure Key Vault.
+
+
 
 Two types of secrets are currently supported:
 * **Supervised**. This is a lightweight form of it, just to remember where you left this secret value, let you navigate back to it at any moment and also automatically **mask** them when a config file is opened. Config files themselves are left unchanged.
