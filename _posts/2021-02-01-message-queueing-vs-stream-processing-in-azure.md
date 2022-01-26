@@ -21,7 +21,7 @@ OK, so [here is a simple sample Azure Function App](https://github.com/scale-ton
 
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fscale-tone%2Faz-messaging-demo%2Fmain%2Faz-messaging-demo-1-scaling%2Farm-template.json)
 
-It will create all relevant resources, including a Function App instance with Dedicated Plan, a Service Bus queue, an Event Hub *with one [partition](https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-features#partitions) in it* and also a separate Application Insights instance. If you then go to that instance and monitor `EventHubEventProcessed` and `ServiceBusEventProcessed` custom metrics, it will show you a picture similar to this:
+It will create all relevant resources, including a Function App instance with Premium Plan, a Service Bus queue, an Event Hub *with one [partition](https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-features#partitions) in it* and also a separate Application Insights instance. If you then go to that instance and monitor `EventHubEventProcessed` and `ServiceBusEventProcessed` custom metrics, it will show you a picture similar to this:
 
 ![sb-vs-eh-processing-speed]({{ site.url }}/images/az-messaging/sb-vs-eh-processing-speed-1.png)
 
