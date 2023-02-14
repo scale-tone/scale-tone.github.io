@@ -3,7 +3,7 @@ title: AzFunc4DevOps released
 permalink: /2023/02/14/azfunc4devops
 ---
 ![teaser]({{ site.url }}/images/azfunc4devops/azfunc4devops-logo.svg)
-# AzFunc4DevOps version 1.0.0 released.
+# AzFunc4DevOps version 1.0.0 released
 
 
 Azure DevOps (aka ADO, formerly known [both as TFS and VSTS](https://learn.microsoft.com/en-us/azure/devops/server/tfs-is-now-azure-devops-server?view=azure-devops)) is a highly customizable dev collaboration platform. And that is no surprise: thousands of Microsoft's own employees have been using it (or its various predecessors) for over two decades, so surely they have a lot to say about what works well and what needs to be fine-tuned for each particular team or person. Not to mention millions of developers using it outside Microsoft.
