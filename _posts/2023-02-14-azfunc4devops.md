@@ -14,7 +14,7 @@ So for you as a developer, it shouldn't be a problem to write a few lines of cod
 
 So here is my attempt to weld these two great technologies together: [AzFunc4DevOps](https://github.com/scale-tone/AzFunc4DevOps#azfunc4devops). Technically, it is a set of Azure DevOps triggers and bindings for Azure Functions. Or a set of Azure Functions triggers and bindings for Azure DevOps (whichever way you prefer :)). Anyway, the idea is to make those lines of code be really just a few lines, make them event-driven, easily deployable to Azure (or, in fact, to wherever you prefer to run your Azure Functions) and of course provide them with all the power of Azure Functions as a platform.
 
-Just to not keep you in suspence any longer, here is a quick example that solves what I am personally get most annoyed with on an Azure DevOps sprint board - aligning the `RemainingWork` field with `OriginalEstimate` and `CompletedWork` fields in a Task:
+Just to not keep you in suspence any longer, here is a quick example that solves what I am personally get most annoyed with on an Azure DevOps sprint board - aligning the **RemainingWork** field with **OriginalEstimate** and **CompletedWork** fields in a Task:
 
 ```
 [FunctionName(nameof(AlignRemainingWorkWithCompletedWork))]
@@ -117,17 +117,17 @@ dotnet add package AzFunc4DevOps.AzureDevOps
 
 Yes, the current version 1.0.0 only works with [.NET in-process](https://learn.microsoft.com/en-us/azure/azure-functions/functions-dotnet-class-library?tabs=v4%2Ccmd) Function projects. But there're plans to add support for .NET Isolated and Functions written in other supported programming languages, so stay tuned for that.
 
-Then the next step will be to provide three essential configuration settings: `AzureWebJobsStorage`, `AZFUNC4DEVOPS_AZURE_DEVOPS_ORG_URL` and `AZFUNC4DEVOPS_AZURE_DEVOPS_PAT`. 
+Then the next step will be to provide three essential configuration settings: **AzureWebJobsStorage**, **AZFUNC4DEVOPS_AZURE_DEVOPS_ORG_URL** and **AZFUNC4DEVOPS_AZURE_DEVOPS_PAT**. 
 
-`AzureWebJobsStorage` setting needs to be provided, because AzFunc4DevOps internally uses [Azure Durable Functions](https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-overview), which require a storage. It's OK to use [Azurite](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite) for local development.
+**AzureWebJobsStorage** setting needs to be provided, because AzFunc4DevOps internally uses [Azure Durable Functions](https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-overview), which require a storage. It's OK to use [Azurite](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite) for local development.
 
-`AZFUNC4DEVOPS_AZURE_DEVOPS_ORG_URL` is your Azure DevOps organization's full URL. E.g. `https://dev.azure.com/my-company-name`.
+**AZFUNC4DEVOPS_AZURE_DEVOPS_ORG_URL** is your Azure DevOps organization's full URL. E.g. `https://dev.azure.com/my-company-name`.
 
-`AZFUNC4DEVOPS_AZURE_DEVOPS_PAT` is your Azure DevOps Personal Access Token. You can [create one in Azure DevOps portal](https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate#create-a-pat), or alternatively you can use [KeeShepherd](https://marketplace.visualstudio.com/items?itemName=kee-shepherd.kee-shepherd-vscode) tool for creating and safely handling it.
+**AZFUNC4DEVOPS_AZURE_DEVOPS_PAT** is your Azure DevOps Personal Access Token. You can [create one in Azure DevOps portal](https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate#create-a-pat), or alternatively you can use [KeeShepherd](https://marketplace.visualstudio.com/items?itemName=kee-shepherd.kee-shepherd-vscode) tool for creating and safely handling it.
 
 Important thing is that the PAT needs to be given all [relevant scopes](https://learn.microsoft.com/en-us/azure/devops/integrate/get-started/authentication/oauth?view=azure-devops#scopes), depending on what your Functions are going to be doing. E.g. if your Function reads/writes Work Items, then `vso.work_write` is be needed.
 
-As an alternative to `AZFUNC4DEVOPS_AZURE_DEVOPS_ORG_URL` and `AZFUNC4DEVOPS_AZURE_DEVOPS_PAT` settings you can specify `OrgUrl` and `PersonalAccessToken` properties in every trigger/binding attribute. Those properties (just like any other trigger/binding attribute property) also support `%MY-SETTING-NAME%` syntax, which allows to pass these values as config settings as well. See [the example here](https://github.com/scale-tone/AzFunc4DevOps/blob/main/samples/CloneBugsIntoDifferentOrg.cs#L23). Using `OrgUrl` and `PersonalAccessToken` properties lets your Functions operate with multiple different ADO orgs or service instances.
+As an alternative to **AZFUNC4DEVOPS_AZURE_DEVOPS_ORG_URL** and **AZFUNC4DEVOPS_AZURE_DEVOPS_PAT** settings you can specify **OrgUrl** and **PersonalAccessToken** properties in every trigger/binding attribute. Those properties (just like any other trigger/binding attribute property) also support **%MY-SETTING-NAME%** syntax, which allows to pass these values as config settings as well. See [the example here](https://github.com/scale-tone/AzFunc4DevOps/blob/main/samples/CloneBugsIntoDifferentOrg.cs#L23). Using **OrgUrl** and **PersonalAccessToken** properties lets your Functions operate with multiple different ADO orgs or service instances.
   
 When running locally on a devbox, you would typically provide these config setting values via a `local.settings.json` file. Here is an example:
 
