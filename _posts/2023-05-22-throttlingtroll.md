@@ -2,7 +2,7 @@
 title: ThrottlingTroll, and how to make distributed locks with it
 permalink: /2023/05/22/throttlingtroll
 ---
-![teaser](https://raw.githubusercontent.com/scale-tone/ThrottlingTroll/main/logo.png)
+![teaser]({{ site.url }}/images/throttlingtroll/teaser.png)
 # ThrottlingTroll, and how to make distributed locks with it.
 
 blah-blah
