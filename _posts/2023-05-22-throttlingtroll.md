@@ -2,7 +2,7 @@
 title: ThrottlingTroll, and how to make distributed locks with it
 permalink: /2023/05/22/throttlingtroll
 ---
-![teaser]({{ site.url }}/images/throttlingtroll/teaser.svg)
+<img src="{{ site.url }}/images/throttlingtroll/teaser.svg" width="650px">
 # ThrottlingTroll, and how to make distributed locks with it.
 
 Yes, I know that there have been many rate limiting/throttling middleware libraries already created for ASP.NET. 
