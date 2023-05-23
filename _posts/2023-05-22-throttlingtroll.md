@@ -47,9 +47,7 @@ app.UseThrottlingTroll(options =>
                 MaxDelayInSeconds = 120,
 
                 IdentityIdExtractor = request =>
-                {
-                    return ((IIncomingHttpRequestProxy)request).Request.Query["id"];
-                }
+                    ((IIncomingHttpRequestProxy)request).Request.Query["id"]
             },
         }
     };
