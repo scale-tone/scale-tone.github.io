@@ -57,7 +57,7 @@ app.UseThrottlingTroll(options =>
 The above code first instructs ThrottlingTroll to use **RedisCounterStore** for storing counters in a shared place (don't forget to put *"RedisConnectionString"* setting into your config file).
 Then it configures a rate limiting rule, that's being applied to the *"/shopping-cart"* endpoint. 
 That rule uses **SemaphoreRateLimitMethod** with **PermitLimit** set to **1**, which means no more than 1 concurrent request to that endpoint is allowed.
-Non-zero **MaxDelayInSeconds** value makes ThrottlingTroll apply spin-wait logic when that limit is exceeded, thus placing all pending requests in a queue (when **MaxDelayInSeconds** is zero, *"429 TooManyRequests"* are immediately returned instead).
+Non-zero **MaxDelayInSeconds** value makes ThrottlingTroll apply spin-wait logic when that limit is exceeded, thus placing all pending requests in a queue (when **MaxDelayInSeconds** is zero or omitted, *"429 TooManyRequests"* are immediately returned instead).
 Then finally a custom **IdentityIdExtractor** is used to identify and separate shopping cart instances from each other. Here we assume that they're identified by an *"id"* query string parameter, but of course it can be anything else (header value, claim value etc.) so long as that value is globally unique.
 
 That's it. Now access to your shopping cart API methods will be synchronized, with no danger of ending up in a corrupt state. And you name all other potential applications for this feature.
