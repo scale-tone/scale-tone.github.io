@@ -56,7 +56,7 @@ public class ShoppingCartController : ControllerBase
 
 And that's it. Now ThrottlingTroll will automatically reject duplicate requests for us:
 
-<img src="https://scale-tone.github.io/images/keeshepherd/shopping-cart-409.png" width="400px"/>
+<img src="https://scale-tone.github.io/images/throttlingtroll/shopping-cart-409.png" width="400px"/>
 
 
 To underscore again, for this to work in a distributed cloud-based solution, you would need to use a *distributed* Counter Store. Note that by default ThrottlingTroll uses an in-memory Counter Store, and a different option needs to be configured explicitly, as shown above. [ThrottlingTroll.CounterStores.Redis](https://github.com/ThrottlingTroll/ThrottlingTroll/tree/main/ThrottlingTroll.CounterStores.Redis#throttlingtrollcounterstoresredis) looks like the best choice here, but you might consider [other distributed alternatives](https://github.com/ThrottlingTroll/ThrottlingTroll/wiki/510.-Counter-Stores), or even [implement your own](https://github.com/ThrottlingTroll/ThrottlingTroll/blob/main/ThrottlingTroll.Core/CounterStores/ICounterStore.cs).
