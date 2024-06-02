@@ -1,9 +1,9 @@
 ---
-title: ThrottlingTroll, and how to deduplicate requests with it
+title: ThrottlingTroll, and how to deduplicate HTTP requests with it
 permalink: /2024/06/02/throttlingtroll-request-deduplication
 ---
 <img src="{{ site.url }}/images/throttlingtroll/no-double-click.svg" width="400px" style="padding-left:100px">
-# ThrottlingTroll, and how to deduplicate requests with it.
+# ThrottlingTroll, and how to deduplicate HTTP requests with it.
 
 Certain HTTP requests should never be processed twice. A well-known example would be an online shopping cart processing request which, if not deduplicated properly, could result in charging the customer a double amount of money.
 
