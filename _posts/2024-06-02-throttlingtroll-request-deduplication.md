@@ -35,7 +35,7 @@ app.UseThrottlingTroll(options =>
 });
 ```
 
-And then apply the [Semaphore](https://github.com/ThrottlingTroll/ThrottlingTroll/wiki/410.-Rate-Limiting-Algorithms#-semaphore) limiting rule (with 1 parallel request allowed) to our HTTP endpoint:
+And then apply the [Semaphore](https://github.com/ThrottlingTroll/ThrottlingTroll/wiki/410.-Rate-Limiting-Algorithms#-semaphore) limiting rule to our HTTP endpoint, with no more than 1 parallel request allowed and the **ReleaseAfterSeconds** property set to the desired duplicate detection window size:
 
 ```
 [ApiController]
