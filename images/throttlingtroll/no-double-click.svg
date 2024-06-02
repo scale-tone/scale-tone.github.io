@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="3.9460001in"
+   height="3.6958599in"
+   viewBox="0 0 100.22841 93.87484"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   sodipodi:docname="no-double-click.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="1"
+     inkscape:cx="175"
+     inkscape:cy="189"
+     inkscape:window-width="1500"
+     inkscape:window-height="930"
+     inkscape:window-x="-6"
+     inkscape:window-y="-6"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <filter
+       id="fx0"
+       x="-10%"
+       y="-10%"
+       width="120%"
+       height="120%"
+       filterUnits="userSpaceOnUse"
+       primitiveUnits="userSpaceOnUse">
+      <feComponentTransfer
+         color-interpolation-filters="sRGB"
+         id="feComponentTransfer1">
+        <feFuncR
+           type="discrete"
+           tableValues="0.431373 0.431373"
+           id="feFuncR1" />
+        <feFuncG
+           type="discrete"
+           tableValues="0.454902 0.454902"
+           id="feFuncG1" />
+        <feFuncB
+           type="discrete"
+           tableValues="0.478431 0.478431"
+           id="feFuncB1" />
+        <feFuncA
+           type="linear"
+           slope="0.431373"
+           intercept="0"
+           id="feFuncA1" />
+      </feComponentTransfer>
+      <feGaussianBlur
+         stdDeviation="0.595361 0.595361"
+         id="feGaussianBlur1" />
+    </filter>
+    <filter
+       id="fx1"
+       x="-10%"
+       y="-10%"
+       width="120%"
+       height="120%"
+       filterUnits="userSpaceOnUse"
+       primitiveUnits="userSpaceOnUse">
+      <feComponentTransfer
+         color-interpolation-filters="sRGB"
+         id="feComponentTransfer2">
+        <feFuncR
+           type="discrete"
+           tableValues="0.431373 0.431373"
+           id="feFuncR2" />
+        <feFuncG
+           type="discrete"
+           tableValues="0.454902 0.454902"
+           id="feFuncG2" />
+        <feFuncB
+           type="discrete"
+           tableValues="0.478431 0.478431"
+           id="feFuncB2" />
+        <feFuncA
+           type="linear"
+           slope="0.431373"
+           intercept="0"
+           id="feFuncA2" />
+      </feComponentTransfer>
+      <feGaussianBlur
+         stdDeviation="0.595361 0.595361"
+         id="feGaussianBlur2" />
+    </filter>
+    <clipPath
+       id="clip2">
+      <rect
+         x="19"
+         y="17"
+         width="78"
+         height="20"
+         id="rect2" />
+    </clipPath>
+    <clipPath
+       id="clip3">
+      <rect
+         x="20"
+         y="17"
+         width="102"
+         height="20"
+         id="rect3" />
+    </clipPath>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       transform="matrix(0.26458333,0,0,0.26458333,-58.737541,-37.83543)"
+       id="g7">
+      <text
+         fill="#156082"
+         font-family="Aptos, Aptos_MSFontService, sans-serif"
+         font-weight="700"
+         font-size="27px"
+         transform="translate(372.6,432)"
+         id="text1">CLICK</text>
+      <g
+         id="g3">
+        <g
+           id="g2">
+          <g
+             id="g1">
+            <path
+               d="M 152,134.2 111.6,93.82 147.2,81 c 1.828,-0.6282 2.801,-2.6194 2.172,-4.4474 -0.35,-1.0204 -1.152,-1.822 -2.172,-2.1726 L 44.62,40.18 C 44.2522,40.0588 43.8672,39.998 43.48,40 v 0 c -1.9216,0.0412 -3.4458,1.6322 -3.4046,3.5538 0.0076,0.3562 0.0698,0.709 0.1846,1.0462 l 34.12,102.68 c 0.644,1.823 2.6436,2.778 4.4662,2.134 0.9972,-0.353 1.7814,-1.137 2.1338,-2.134 L 93.82,111.64 134.18,152 Z"
+               stroke="#156082"
+               stroke-width="8.04188"
+               fill="#ffffff"
+               transform="matrix(-1,0,0,1,533,195)"
+               id="path1" />
+          </g>
+        </g>
+      </g>
+      <g
+         id="g6">
+        <g
+           id="g5">
+          <g
+             id="g4">
+            <path
+               d="M 152,134.2 111.6,93.82 147.2,81 c 1.828,-0.6282 2.801,-2.6194 2.172,-4.4474 -0.35,-1.0204 -1.152,-1.822 -2.172,-2.1726 L 44.62,40.18 C 44.2522,40.0588 43.8672,39.998 43.48,40 v 0 c -1.9216,0.0412 -3.4458,1.6322 -3.4046,3.5538 0.0076,0.3562 0.0698,0.709 0.1846,1.0462 l 34.12,102.68 c 0.644,1.823 2.6436,2.778 4.4662,2.134 0.9972,-0.353 1.7814,-1.137 2.1338,-2.134 L 93.82,111.64 134.18,152 Z"
+               stroke="#156082"
+               stroke-width="8.04188"
+               fill="#ffffff"
+               transform="matrix(-1,0,0,1,489,238)"
+               id="path3" />
+          </g>
+        </g>
+      </g>
+      <text
+         fill="#156082"
+         font-family="Aptos, Aptos_MSFontService, sans-serif"
+         font-weight="700"
+         font-size="27px"
+         transform="translate(350.6,231)"
+         id="text6">DOUBLE</text>
+      <path
+         d="M 256,321.508 C 256,236.728 325.844,168 412,168 c 86.156,0 156,68.728 156,153.508 0,84.78 -69.844,153.508 -156,153.508 -86.156,0 -156,-68.728 -156,-153.508 z M 516.92,414.41 C 569.15,357.487 564.516,269.748 506.571,218.439 452.893,170.909 371.353,170.845 317.597,218.291 Z M 307.08,228.606 c -52.23,56.923 -47.596,144.662 10.349,195.971 53.678,47.53 135.218,47.594 188.974,0.148 z"
+         stroke="#042433"
+         stroke-width="2"
+         stroke-miterlimit="8"
+         fill="#ff0000"
+         fill-rule="evenodd"
+         id="path6" />
+    </g>
+  </g>
+</svg>
