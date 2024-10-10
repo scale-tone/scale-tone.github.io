@@ -2,7 +2,7 @@
 title: ThrottlingTroll, and how to make pricing tiers for your API with it
 permalink: /2024/10/10/throttlingtroll-pricing-tiers
 ---
-<img src="{{ site.url }}/images/throttlingtroll/pricing-tiers.png" width="700px" >
+<img src="{{ site.url }}/images/throttlingtroll/pricing-tiers.png" width="650px" >
 # ThrottlingTroll, and how to make pricing tiers for your API with it.
 
 Another typical task when building web APIs is to implement *pricing tiers*, aka to apply different request rate limits based on which tariff the client's api-key belongs to.
