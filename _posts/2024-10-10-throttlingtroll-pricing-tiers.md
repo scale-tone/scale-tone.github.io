@@ -54,7 +54,7 @@ app.UseThrottlingTroll(options =>
 });
 ```
 
-Or you could even [configure the limits reactively](https://github.com/ThrottlingTroll/ThrottlingTroll/wiki/130.-%5BIngress%5D-How-to-configure-reactively) (load them from some storage) and provide  CostExtractor routine globally, [like shown here](https://github.com/ThrottlingTroll/ThrottlingTroll/wiki/150.-%5BIngress%5D-Personalized-rate-limiting#using-costextractors).
+Or you could even [configure the limits reactively](https://github.com/ThrottlingTroll/ThrottlingTroll/wiki/130.-%5BIngress%5D-How-to-configure-reactively) (load them from some storage) and provide your  CostExtractor routine globally, [like shown here](https://github.com/ThrottlingTroll/ThrottlingTroll/wiki/150.-%5BIngress%5D-Personalized-rate-limiting#using-costextractors).
 
 Just remember that both [IdentityIdExtractors](https://github.com/ThrottlingTroll/ThrottlingTroll/wiki/150.-%5BIngress%5D-Personalized-rate-limiting#extracting-and-using-identityids) and [CostExtractors](https://github.com/ThrottlingTroll/ThrottlingTroll/wiki/150.-%5BIngress%5D-Personalized-rate-limiting#using-costextractors) will be called as part of each request processing, so they're supposed to be fast. That's why they're intentionally synchronous. So it would be a good idea to preload and cache that api-key-to-pricing-tier mapping and whatever else data your code might need.
 
