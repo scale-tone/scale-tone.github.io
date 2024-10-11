@@ -30,6 +30,7 @@ app.UseThrottlingTroll(options =>
                     IntervalInSeconds = 60
                 },
 
+                // "Charges" the client differently, based on their pricing tier
                 CostExtractor = request =>
                 {
                     string? apiKey = ((IIncomingHttpRequestProxy)request).Request.Query["api-key"];
@@ -47,6 +48,14 @@ app.UseThrottlingTroll(options =>
                         default:
                             return 1000;
                     }
+                },
+
+                // Also need to have an IdentityIdExtractor, so that the limit is applied per api-key (not the same limit for all clients)
+                IdentityIdExtractor = request => 
+                {
+                    string? apiKey = ((IIncomingHttpRequestProxy)request).Request.Query["api-key"];
+
+                    return apiKey ?? string.Empty;
                 }
             },
         },
@@ -54,7 +63,7 @@ app.UseThrottlingTroll(options =>
 });
 ```
 
-Or you could even [configure the limits reactively](https://github.com/ThrottlingTroll/ThrottlingTroll/wiki/130.-%5BIngress%5D-How-to-configure-reactively) (load them from some storage) and provide your  CostExtractor routine globally, [like shown here](https://github.com/ThrottlingTroll/ThrottlingTroll/wiki/150.-%5BIngress%5D-Personalized-rate-limiting#using-costextractors).
+Or you could even [configure the limits reactively](https://github.com/ThrottlingTroll/ThrottlingTroll/wiki/130.-%5BIngress%5D-How-to-configure-reactively) (load them from some storage) and provide your CostExtractor and IdentityIdExtractor routines globally, [like shown here](https://github.com/ThrottlingTroll/ThrottlingTroll/wiki/150.-%5BIngress%5D-Personalized-rate-limiting#using-costextractors).
 
 Just remember that both [IdentityIdExtractors](https://github.com/ThrottlingTroll/ThrottlingTroll/wiki/150.-%5BIngress%5D-Personalized-rate-limiting#extracting-and-using-identityids) and [CostExtractors](https://github.com/ThrottlingTroll/ThrottlingTroll/wiki/150.-%5BIngress%5D-Personalized-rate-limiting#using-costextractors) will be called as part of each request processing, so they're supposed to be fast. That's why they're intentionally synchronous. So it would be a good idea to preload and cache that api-key-to-pricing-tier mapping and whatever else data your code might need.
 
